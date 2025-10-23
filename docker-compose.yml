@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ./apps/backend
+    container_name: ppgti-backend
+    restart: always
+    ports:
+      - '4000:4000'
+    env_file:
+      - ./apps/backend/.env
+    networks:
+      - ppgti
+
+  frontend:
+    build: ./apps/frontend
+    container_name: ppgti-frontend
+    restart: always
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    networks:
+      - ppgti
+
+networks:
+  ppgti:
+    driver: bridge

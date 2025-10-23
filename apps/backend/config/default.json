@@ -1,0 +1,6 @@
+{
+  "serviceName": "ppgti-register-api",
+  "serviceUrl": "",
+  "timezone": "America/Fortaleza",
+  "logDir": "/var/log/express-app"
+}
