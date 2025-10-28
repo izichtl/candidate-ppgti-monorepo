@@ -1,10 +1,15 @@
 FROM node:22-alpine
-RUN corepack enable && corepack prepare yarn@stable --activate
+RUN corepack disable && npm install -g yarn@1.22.22
 WORKDIR /app
 COPY package.json yarn.lock ./
+
+ENV NODE_ENV=development
+
 RUN yarn install --frozen-lockfile
-RUN yarn global add typescript
+
+RUN npm install typescript -g
 COPY . .
-RUN yarn build
+RUN npm run build
 EXPOSE 3001
 CMD ["yarn", "start"]
+
