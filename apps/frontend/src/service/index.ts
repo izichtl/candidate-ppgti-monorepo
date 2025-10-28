@@ -2,11 +2,11 @@ import axios, { AxiosInstance } from 'axios';
 import { VITE_API_URL, VITE_IS_LOCAL, VITE_LOCAL_TOKEN } from '../config';
 
 export const instanceAXIOS = axios.create({
-  baseURL: VITE_API_URL,
+  baseURL: VITE_API_URL + '/api',
 });
 
 export const APIDecoratorWithBaseURI = (
-  base: string | undefined = VITE_API_URL,
+  base: string | undefined = VITE_API_URL + '/api'
 ): AxiosInstance => {
   instanceAXIOS.defaults.baseURL = base;
 
