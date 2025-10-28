@@ -1,26 +1,24 @@
+version: '3.9'
+
 services:
   backend:
     build: ./apps/backend
-    container_name: ppgti-backend
-    restart: always
+    container_name: candidate-backend
     ports:
-      - '4000:4000'
-    env_file:
-      - ./apps/backend/.env
+      - '3001:3001'
     networks:
-      - ppgti
+      - candidate-net
 
   frontend:
     build: ./apps/frontend
-    container_name: ppgti-frontend
-    restart: always
-    ports:
-      - '80:80'
+    container_name: candidate-frontend
     depends_on:
       - backend
+    ports:
+      - '80:80'
     networks:
-      - ppgti
+      - candidate-net
 
 networks:
-  ppgti:
+  candidate-net:
     driver: bridge

@@ -1,8 +1,0 @@
-{
-  "name": "candidate-ppgti",
-  "private": true,
-  "workspaces": [
-    "apps/frontend",
-    "apps/backend"
-  ]
-}
