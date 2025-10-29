@@ -8,6 +8,14 @@ services:
       - '3001:3001'
     networks:
       - candidate-net
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3001/api/health']
+      interval: 600s
+      timeout: 5s
+      retries: 3
+    mem_limit: 512m
+    cpus: 0.75
+    restart: unless-stopped
 
   reverse-proxy:
     build:
@@ -20,6 +28,14 @@ services:
       - '80:80'
     networks:
       - candidate-net
+    mem_limit: 256m
+    cpus: 0.25
+    restart: unless-stopped
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
 
 networks:
   candidate-net:

@@ -1,26 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/X';
 import SitemarkIcon from '../r-icon/index';
+import CustomLink from '../custom-link';
 
 function Copyright() {
   return (
     <Typography variant='body2' sx={{ color: 'text.secondary', mt: 1 }}>
       {'Copyright © '}
-      <Link color='text.secondary' href='#'>
-        Eng. Software - Equipe 01
-      </Link>
+      <CustomLink color='text.secondary' to='#'>
+        PPGTI
+      </CustomLink>
       &nbsp;
       {new Date().getFullYear()}
     </Typography>
@@ -109,22 +102,22 @@ export default function Footer() {
             <Typography variant='body2' sx={{ fontWeight: 'medium' }}>
               Redes Sociais
             </Typography>
-            <Link
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.linkedin.com/company/programa-de-p%C3%B3s-gradua%C3%A7%C3%A3o-em-tecnologia-da-informa%C3%A7%C3%A3o/posts/?feedView=all'
+              to='https://www.linkedin.com/company/programa-de-p%C3%B3s-gradua%C3%A7%C3%A3o-em-tecnologia-da-informa%C3%A7%C3%A3o/posts/?feedView=all'
             >
               Linkedin
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.instagram.com/ppgti_ifpb'
+              to='https://www.instagram.com/ppgti_ifpb'
             >
               Instagram
-            </Link>
+            </CustomLink>
           </Box>
           <Box
             sx={{
@@ -136,30 +129,30 @@ export default function Footer() {
             <Typography variant='body2' sx={{ fontWeight: 'medium' }}>
               PPGTI
             </Typography>
-            <Link
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.ifpb.edu.br/ppgti'
+              to='https://www.ifpb.edu.br/ppgti'
             >
               Institucional
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.ifpb.edu.br/ppgti/publicacoes/producao-tecnica'
+              to='https://www.ifpb.edu.br/ppgti/publicacoes/producao-tecnica'
             >
               Produção Técnica
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.ifpb.edu.br/ppgti/publicacoes/dissertacoes'
+              to='https://www.ifpb.edu.br/ppgti/publicacoes/dissertacoes'
             >
               Dissertações
-            </Link>
+            </CustomLink>
           </Box>
           <Box
             sx={{
@@ -171,30 +164,30 @@ export default function Footer() {
             <Typography variant='body2' sx={{ fontWeight: 'medium' }}>
               IFPB
             </Typography>
-            <Link
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.ifpb.edu.br/'
+              to='https://www.ifpb.edu.br/'
             >
               Institucional
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://www.ifpb.edu.br/prpipg'
+              to='https://www.ifpb.edu.br/prpipg'
             >
               Pesquisa e Inovação
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='https://repositorio.ifpb.edu.br/handle/177683/986'
+              to='https://repositorio.ifpb.edu.br/handle/177683/986'
             >
               Repositório Digital
-            </Link>
+            </CustomLink>
           </Box>
         </Box>
         <Box
@@ -208,25 +201,25 @@ export default function Footer() {
           }}
         >
           <div>
-            <Link
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='/about'
+              to='/about'
             >
               Política de Privacidade
-            </Link>
+            </CustomLink>
             <Typography sx={{ display: 'inline', mx: 0.5, opacity: 0.5 }}>
               &nbsp;•&nbsp;
             </Typography>
-            <Link
+            <CustomLink
               color='text.secondary'
               variant='body2'
               target='_blank'
-              href='/about'
+              to='/about'
             >
               Termos de Uso e Serviço
-            </Link>
+            </CustomLink>
             <Copyright />
           </div>
         </Box>
