@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh usuario@servidor 'cd /candidate-ppgti && ./deploy.sh'
+ssh ppgti@10.0.7.24 'cd candidate-ppgti-monorepo/ && sudo ./deploy.sh'

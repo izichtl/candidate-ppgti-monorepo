@@ -2,7 +2,8 @@
 set -e
 
 echo "Atualizando repositório..."
-git pull origin main
+git pull
+# git pull origin main
 
 echo "Buildando containers..."
 sudo docker compose build --no-cache
