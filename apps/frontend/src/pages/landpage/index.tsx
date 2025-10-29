@@ -47,19 +47,19 @@ export default function LandingPage() {
         }}
       >
         <ScrollToTop />
-        <Container maxWidth="md">
-          <Typography variant="h2" gutterBottom>
+        <Container maxWidth='md'>
+          <Typography variant='h2' gutterBottom>
             Inscrição no Mestrado Profissional em Tecnologia da Informação
           </Typography>
-          <Typography variant="h5" color="text.secondary" paragraph>
+          <Typography variant='h5' color='text.secondary' paragraph>
             Faça parte de um dos programas de pós-graduação mais inovadores da
             região. Inscrições abertas!.
           </Typography>
           <Button
-            variant="contained"
-            size="large"
+            variant='contained'
+            size='large'
             endIcon={<ArrowRight />}
-            href="/login"
+            onClick={() => navigate('/login')}
           >
             Inscreva-se Agora
           </Button>
