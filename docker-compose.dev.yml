@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile.dev
+    container_name: candidate-backend-dev
+    ports:
+      - '3001:3001'
+    networks:
+      - candidate-net
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./apps/backend:/app
+      - /app/node_modules
+    command: >
+      sh -c '
+      echo "";
+      echo "====================================================";
+      echo "        🚀  AMBIENTE DE DESENVOLVIMENTO (DEV)";
+      echo "====================================================";
+      echo " Backend rodando em: http://localhost:3001";
+      echo " Frontend via proxy: http://localhost/inscricoesppgti/";
+      echo " Hot reload ativo ✅";
+      echo "====================================================";
+      echo "";
+      yarn dev
+      '
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile.dev
+    container_name: candidate-frontend-dev
+    ports:
+      - '5173:5173'
+    networks:
+      - candidate-net
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./apps/frontend:/app
+      - /app/node_modules
+    command: >
+      sh -c '
+      echo "";
+      echo "====================================================";
+      echo "        🚧  FRONTEND EM MODO DEV (VITE)";
+      echo "====================================================";
+      echo " Porta: 5173";
+      echo " Hot reload ativo ✅";
+      echo "====================================================";
+      echo "";
+      yarn dev
+      '
+    restart: unless-stopped
+
+  reverse-proxy:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    container_name: candidate-reverse-proxy-dev
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - '80:80'
+    networks:
+      - candidate-net
+    volumes:
+      - ./nginx/dev.config:/etc/nginx/conf.d/dev.conf:ro
+    command: >
+      sh -c '
+      echo "";
+      echo "====================================================";
+      echo " 🌐  NGINX DEV MODE — roteando requisições";
+      echo "====================================================";
+      echo " /inscricoesppgti/api  → backend (3001)";
+      echo " /inscricoesppgti/     → frontend (5173)";
+      echo "====================================================";
+      echo "";
+      nginx -g "daemon off;";
+      '
+    restart: unless-stopped
+
+networks:
+  candidate-net:
+    driver: bridge
