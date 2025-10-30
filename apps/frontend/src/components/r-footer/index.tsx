@@ -10,12 +10,12 @@ import CustomLink from '../custom-link';
 function Copyright() {
   return (
     <Typography variant='body2' sx={{ color: 'text.secondary', mt: 1 }}>
-      {'Copyright © '}
-      <CustomLink color='text.secondary' to='#'>
+      {'Direitos Reservados © '}
+      <CustomLink color='text.secondary' to='https://joaopessoa.ifpb.edu.br/'>
         PPGTI
       </CustomLink>
       &nbsp;
-      {new Date().getFullYear()}
+      {new Date().getFullYear()} - v: 1.0.0
     </Typography>
   );
 }

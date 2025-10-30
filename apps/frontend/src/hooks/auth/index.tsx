@@ -34,7 +34,7 @@ export const AuthProvider: FC<PropsWithChildren<{}>> = ({
   children,
 }): ReactElement => {
   const [accessToken, setAccessToken] = useState<string>(
-    localStorage.getItem('userJWT') || '',
+    localStorage.getItem('userJWT') || ''
   );
 
   const login = useCallback((token: string): void => {
@@ -51,34 +51,6 @@ export const AuthProvider: FC<PropsWithChildren<{}>> = ({
   const getToken = useCallback((): string | null => {
     return localStorage.getItem('userJWT');
   }, []);
-
-  // const isAuthenticated = (): boolean => {
-  //   const token = localStorage.getItem('userJWT');
-
-  //   if (!token || token.trim() === '') {
-  //     return false;
-  //   }
-
-  //   try {
-  //     // Remove "Bearer " prefix if present
-  //     const cleanToken = token.replace('Bearer ', '');
-  //     const decoded = jwtDecode(cleanToken);
-
-  //     // Check if token is expired
-  //     const currentTime = Date.now() / 1000;
-  //     if (decoded.exp && decoded.exp < currentTime) {
-  //       // Token expired, remove it
-  //       localStorage.removeItem('userJWT');
-  //       return false;
-  //     }
-
-  //     return true;
-  //   } catch (error) {
-  //     // Invalid token, remove it
-  //     localStorage.removeItem('userJWT');
-  //     return false;
-  //   }
-  // };
 
   const isAuthenticated = (): boolean => {
     const location = useLocation();

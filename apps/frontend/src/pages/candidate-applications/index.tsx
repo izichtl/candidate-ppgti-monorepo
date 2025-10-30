@@ -94,16 +94,16 @@ const CandidateApplications = () => {
       )}
       {!aplicationsLoading && (
         <>
-          <Grid container spacing={2} alignItems="center" mb={4}>
+          <Grid container spacing={2} alignItems='center' mb={4}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <Typography variant="h3" fontWeight="bold">
+              <Typography variant='h3' fontWeight='bold'>
                 Suas inscrições
               </Typography>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography
-                variant="h6"
-                color="text.secondary"
+                variant='h6'
+                color='text.secondary'
                 textAlign={isMobile ? 'left' : 'right'}
               >
                 {currentDateTime}
@@ -112,7 +112,7 @@ const CandidateApplications = () => {
           </Grid>
           {applicationsProcesses.valid[0] !== undefined && (
             <>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
+              <Typography variant='h5' fontWeight='bold' gutterBottom>
                 Inscrições Válidas
               </Typography>
               <Stack spacing={2}></Stack>
@@ -123,7 +123,7 @@ const CandidateApplications = () => {
             <>
               <br />
               <br />
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
+              <Typography variant='h5' fontWeight='bold' gutterBottom>
                 Inscrições Descartadas
               </Typography>
               <Stack spacing={2}></Stack>
@@ -131,7 +131,7 @@ const CandidateApplications = () => {
             </>
           )}
           {applicationsProcesses.valid[0] === undefined && (
-            <Typography variant="h5" fontWeight="bold" gutterBottom>
+            <Typography variant='h5' fontWeight='bold' gutterBottom>
               Você não tem inscrições
             </Typography>
           )}

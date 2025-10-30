@@ -15,7 +15,7 @@ export const handlerCommitteeLogin = async (
   matricula: string,
   password: string
 ): Promise<CommitteeLoginResponse> => {
-  console.log('@@@@SUA')
+  console.log('@@@@SUA');
   const { data, error } = await supabase
     .from('committee_members')
     .select('*')
@@ -30,9 +30,19 @@ export const handlerCommitteeLogin = async (
       status: 500,
     };
   }
-
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
+  console.log('@@@@@@@@@@@');
   if (data !== null) {
-    const token = await signToken(data);
+    const token = await signToken(data, 'COMMITTEE');
     return {
       error: false,
       message: 'Committee member authenticated successfully',

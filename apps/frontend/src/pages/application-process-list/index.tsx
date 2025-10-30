@@ -57,7 +57,7 @@ type Application = {
 
 export function filterApplicationsByStatus(
   status: 'pending' | 'compliant' | 'rejected' | 'all',
-  applications: Application[],
+  applications: Application[]
 ): Application[] {
   if (status === 'all') {
     return applications;
@@ -68,13 +68,13 @@ export function filterApplicationsByStatus(
     return applications.filter(
       (app) =>
         !app.applications_verification ||
-        app.applications_verification.length === 0,
+        app.applications_verification.length === 0
     );
   }
 
   // Para 'compliant' e 'rejected'
   return applications.filter((app) =>
-    app.applications_verification?.some((ver) => ver.final_status === status),
+    app.applications_verification?.some((ver) => ver.final_status === status)
   );
 }
 
@@ -96,7 +96,7 @@ const ProcessAplicationList: React.FC = () => {
       if (applications.applications[0] !== undefined) {
         const afiltered = filterApplicationsByStatus(
           status as any,
-          applications.applications,
+          applications.applications
         );
         setApplicationsArray(afiltered);
       }
@@ -131,30 +131,30 @@ const ProcessAplicationList: React.FC = () => {
             }}
           >
             <ScrollToTop />
-            <Typography variant="h4" fontWeight="bold">
+            <Typography variant='h4' fontWeight='bold'>
               Inscrições realizadas
             </Typography>
             <Button
-              variant="contained"
+              variant='contained'
               onClick={() => navigate(-1)}
-              size="large"
+              size='large'
             >
               Voltar
             </Button>
           </Box>
 
-          <Typography variant="h5" fontWeight={600} sx={{ mb: 1 }}>
+          <Typography variant='h5' fontWeight={600} sx={{ mb: 1 }}>
             {pageData.title}
           </Typography>
 
-          <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
+          <Typography variant='h6' color='text.secondary' sx={{ mb: 3 }}>
             {pageData.description.length > 100
               ? `${pageData.description.substring(0, 100)}...`
               : pageData.description}
           </Typography>
 
           <Box sx={{ mb: 4 }}>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant='body1' color='text.secondary'>
               <strong>Início:</strong> {formatDate(pageData.start_date)} |{' '}
               <strong>Fim:</strong> {formatDate(pageData.end_date)}
             </Typography>
@@ -172,16 +172,16 @@ const ProcessAplicationList: React.FC = () => {
               exclusive
               onChange={handleStatusChange}
             >
-              <ToggleButton color="info" value="all">
+              <ToggleButton color='info' value='all'>
                 Todas
               </ToggleButton>
-              <ToggleButton color="warning" value="pending">
+              <ToggleButton color='warning' value='pending'>
                 Aguardando
               </ToggleButton>
-              <ToggleButton color="success" value="compliant">
+              <ToggleButton color='success' value='compliant'>
                 Homologado
               </ToggleButton>
-              <ToggleButton color="error" value="rejected">
+              <ToggleButton color='error' value='rejected'>
                 Recusado
               </ToggleButton>
             </ToggleButtonGroup>
@@ -198,13 +198,13 @@ const ProcessAplicationList: React.FC = () => {
                   }}
                 >
                   <CardContent sx={{ pb: 1 }}>
-                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                    <Typography variant='h6' fontWeight='bold' gutterBottom>
                       {item.candidates.name}
                     </Typography>
 
                     <Typography
-                      variant="subtitle2"
-                      color="text.secondary"
+                      variant='subtitle2'
+                      color='text.secondary'
                       gutterBottom
                     >
                       {item.candidates.email} · Inscrição:{' '}
@@ -214,16 +214,16 @@ const ProcessAplicationList: React.FC = () => {
                     <Divider sx={{ my: 1 }} />
 
                     <Typography
-                      variant="subtitle1"
-                      fontWeight="medium"
+                      variant='subtitle1'
+                      fontWeight='medium'
                       sx={{ mb: 1 }}
                     >
                       Projeto: {item.project_title}
                     </Typography>
 
                     <Typography
-                      variant="body2"
-                      color="text.secondary"
+                      variant='body2'
+                      color='text.secondary'
                       sx={{ mb: 1 }}
                     >
                       <strong>Linha de Pesquisa:</strong>{' '}
@@ -231,52 +231,60 @@ const ProcessAplicationList: React.FC = () => {
                       <strong>Tema:</strong> {item.research_topics.name} <br />
                       <Link
                         href={item.project_path}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target='_blank'
+                        rel='noopener noreferrer'
                       ></Link>
                     </Typography>
                     <Link
                       href={item.project_path}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target='_blank'
+                      rel='noopener noreferrer'
                     >
-                      <Button size="small" startIcon={<DescriptionIcon />}>
+                      <Button size='small' startIcon={<DescriptionIcon />}>
                         Pre-Projeto
                       </Button>
                     </Link>
                   </CardContent>
-
+                  {console.log(item.applications_verification)}
                   <CardActions sx={{ justifyContent: 'space-between', px: 2 }}>
-                    {/* {console.log(item)} */}
                     {item.applications_verification[0] !== undefined && (
                       <Chip
                         label={
                           getStatusInfo(
-                            item.applications_verification[0].final_status,
+                            item.applications_verification[0].final_status
                           ).label
                         }
                         color={
                           getStatusInfo(
-                            item.applications_verification[0].final_status,
+                            item.applications_verification[0].final_status
                           ).color
                         }
-                        size="medium"
+                        size='medium'
                         sx={{ color: 'white' }}
                       />
                     )}
                     {item.applications_verification[0] === undefined && (
                       <Chip
-                        label="Aguardando"
-                        color="warning"
-                        size="medium"
+                        label='Aguardando'
+                        color='warning'
+                        size='medium'
                         sx={{ color: 'white' }}
                       />
                     )}
                     <Button
-                      variant="contained"
+                      variant='contained'
+                      disabled={
+                        item.applications_verification[0] !== undefined &&
+                        (getStatusInfo(
+                          item.applications_verification[0].final_status
+                        ).label === 'Homologado' ||
+                          getStatusInfo(
+                            item.applications_verification[0].final_status
+                          ).label === 'Recusado')
+                      }
                       onClick={() =>
                         navigate(
-                          `/comissao/processos/${pageData.id}/inscricoes/${item.id}`,
+                          `/comissao/processos/${pageData.id}/inscricoes/${item.id}`
                         )
                       }
                     >

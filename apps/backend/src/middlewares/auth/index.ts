@@ -22,10 +22,13 @@ export interface CommitteeMember {
   if_registration: string;
 }
 
-export async function signToken(user: User | CommitteeMember): Promise<string> {
+export async function signToken(
+  user: User | CommitteeMember,
+  role: string = 'USER'
+): Promise<string> {
   const secret = Buffer.from(JWT_SECRET, 'base64');
 
-  return jwt.sign({ ...user, roles: ['USER'] }, secret, {
+  return jwt.sign({ ...user, roles: [role] }, secret, {
     expiresIn: 60 * 60 * 24 * 3, // expires in 1 day
     // expiresIn: 2592000, // expires in 30 days
   });

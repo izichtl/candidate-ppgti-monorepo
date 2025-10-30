@@ -12,20 +12,16 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import DescriptionIcon from '@mui/icons-material/Description';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import AddIcon from '@mui/icons-material/Add';
 import { useAuth } from '../../../../hooks/auth';
+import { isCommitteeUser } from '../../../../utils/user-validation';
 
 export default function MenuContent() {
   const { getUserFromToken } = useAuth();
   const location = useLocation();
-
   const user = getUserFromToken();
-  const isCommitteeUser =
-    user &&
-    (user.role === 'committee' ||
-      user.user_type === 'committee' ||
-      location.pathname.includes('/comissao'));
 
   const committeeMenuItems = [
     { href: '/comissao/dashboard', text: 'Dashboard', icon: <DashboardIcon /> },
@@ -54,10 +50,14 @@ export default function MenuContent() {
       text: 'Suas Inscrições',
       icon: <ContactPageIcon />,
     },
-    { href: '/documents', text: 'Documentos', icon: <DescriptionIcon /> },
+    {
+      href: '/candidate/profile',
+      text: 'Seus Dados',
+      icon: <AccountBoxIcon />,
+    },
   ];
 
-  const mainListItems = isCommitteeUser
+  const mainListItems = isCommitteeUser(user)
     ? committeeMenuItems
     : candidateMenuItems;
 

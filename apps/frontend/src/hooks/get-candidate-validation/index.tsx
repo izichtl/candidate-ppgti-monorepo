@@ -17,9 +17,12 @@ export type UserApplicationsResponse = {
 
 export type UpdateSelectionProcessProps = Partial<UserApplicationsResponse>;
 
-export const useGetCandidateValidation = () => {
-  const url = '/v1/candidate/data/validation';
-  console.log('request chamada');
+export const useGetCandidateValidation = (
+  cpf: string | undefined = undefined
+) => {
+  let params = cpf !== undefined && cpf !== '' ? cpf : undefined;
+  console.log(params, 'entrada');
+  const url = `/v1/candidate/data/validation?cpf=${params}`;
 
   const fetchData = async (): Promise<UserApplicationsResponse> => {
     const response =
@@ -29,11 +32,11 @@ export const useGetCandidateValidation = () => {
 
   const { data, error, isLoading } = useSWR<UserApplicationsResponse>(
     url,
-    fetchData,
+    fetchData
   );
 
   const cadidateValid: ValidationByProcess | null = data?.data ?? null;
-  console.log(data, error, isLoading, 'request chamada');
+
   return {
     cadidateValid,
     cadidateValidLoading: isLoading,
