@@ -37,12 +37,12 @@ const CandidateProfilePage = () => {
       {!candidateFullDataLoading && candidateFullData && (
         <>
           <Grid container spacing={2} alignItems='center' mb={4}>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant='h3' fontWeight='bold'>
                 Meu Cadastro
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Typography
                 variant='h6'
                 color='text.secondary'

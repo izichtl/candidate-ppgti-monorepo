@@ -9,6 +9,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { CandidateFullDataResponse } from '../../hooks/get-full-candidate-by-cpf';
+import CustomLink from '../custom-link';
 
 type Props = {
   data: CandidateFullDataResponse;
@@ -179,14 +180,14 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
                 <strong>{label}</strong>
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <Link
-                  href={fileUrl}
+                <CustomLink
+                  to={fileUrl as string}
                   target='_blank'
                   rel='noopener noreferrer'
                   underline='none'
                 >
                   <Button variant='outlined'>Acessar Documento</Button>
-                </Link>
+                </CustomLink>
               </Box>
               <Divider sx={{ mb: 1 }} />
             </Box>

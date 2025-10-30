@@ -245,7 +245,6 @@ const ProcessAplicationList: React.FC = () => {
                       </Button>
                     </Link>
                   </CardContent>
-                  {console.log(item.applications_verification)}
                   <CardActions sx={{ justifyContent: 'space-between', px: 2 }}>
                     {item.applications_verification[0] !== undefined && (
                       <Chip
