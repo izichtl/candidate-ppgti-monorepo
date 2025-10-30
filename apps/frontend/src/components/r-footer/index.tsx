@@ -15,7 +15,7 @@ function Copyright() {
         PPGTI
       </CustomLink>
       &nbsp;
-      {new Date().getFullYear()} - v: 1.0.0
+      {new Date().getFullYear()} - v: 1.1.3
     </Typography>
   );
 }
