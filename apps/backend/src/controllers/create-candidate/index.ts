@@ -4,9 +4,9 @@ import { sanitizeCPF } from '../../utils/string-format';
 import { verifyUserExistence } from '../../models/candidate-login';
 import { handlerCadidateRegister } from '../../models/candidate-register';
 
-
 export const candidateRegister = controllerWrapper(async (_req, _res) => {
   const { email, cpf, social_name } = _req.body;
+
   const sanitizeCPFValue = sanitizeCPF(cpf);
 
   // verifica se o usuário existe

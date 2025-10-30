@@ -4,7 +4,6 @@ import type { Request, Response, NextFunction } from 'express';
 import { JWT_SECRET } from '../../config';
 import { response, ResponsePayload } from '../response';
 import { getUserFromToken, authGuard } from './index';
-import AppDataSource from '../../db';
 
 export interface User {
   id: number;
@@ -105,24 +104,6 @@ export const committeeAuthMiddleware = async (
         status: 401,
       });
     }
-
-    // if (!AppDataSource.isInitialized) {
-    //   await AppDataSource.initialize();
-    // }
-
-    // const committeeUser = await AppDataSource.query(
-    //   `SELECT * FROM committee_members WHERE id = $1`,
-    //   [(user as any).id]
-    // );
-
-    // if (!committeeUser || committeeUser.length === 0) {
-    //   console.log('Access denied. Committee member required.');
-    //   response.unauthorized({
-    //     message: 'Access denied. Committee member required.',
-    //     status: 403,
-    //   });
-    //   return;
-    // }
 
     next();
   } catch (error) {

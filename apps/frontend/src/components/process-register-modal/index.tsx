@@ -54,7 +54,7 @@ const CadastroFormModal: React.FC<CadastroFormModalProps> = ({
   useEffect(() => {
     if (useFormikProps.values.research_line_id !== 'Selecione uma linha') {
       const themes = opcoesLinhaPesquisa.filter(
-        (line: any) => line.value === useFormikProps.values.research_line_id,
+        (line: any) => line.value === useFormikProps.values.research_line_id
       );
       const newThemes = themes[0].research_topics.map((theme: any) => {
         return {
@@ -80,11 +80,10 @@ const CadastroFormModal: React.FC<CadastroFormModalProps> = ({
         const validTopics = topics.filter((topic: Topic) => {
           const id = topic.id;
           const isFound = validation.topicsUsed.find(
-            (id_: number) => id_ === id,
+            (id_: number) => id_ === id
           );
           return isFound !== undefined;
         });
-
         if (validation.reachedLimit) {
           line.research_topics = validTopics;
         }
@@ -113,22 +112,22 @@ const CadastroFormModal: React.FC<CadastroFormModalProps> = ({
       {!loading && (
         <>
           <Typography
-            variant="body2"
-            color="text.secondary"
-            textAlign="center"
+            variant='body2'
+            color='text.secondary'
+            textAlign='center'
             mb={3}
           >
             {'Preencha os dados para enviar seu pré-projeto'}
           </Typography>
 
           <Stack spacing={3}>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl margin='normal' required fullWidth>
               <InputLabel>Linhas de Pesquisa</InputLabel>
               <Select
                 fullWidth
                 required
-                name="research_line_id"
-                label="Linha de Pesquisa"
+                name='research_line_id'
+                label='Linha de Pesquisa'
                 value={useFormikProps.values.research_line_id}
                 onChange={useFormikProps.handleChange}
                 error={
@@ -152,12 +151,12 @@ const CadastroFormModal: React.FC<CadastroFormModalProps> = ({
                 ))}
               </Select>
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl margin='normal' required fullWidth>
               <InputLabel>Tema de Pesquisa</InputLabel>
               <Select
                 fullWidth
-                name="research_topic_id"
-                label="Linha de Pesquisa"
+                name='research_topic_id'
+                label='Linha de Pesquisa'
                 disabled={
                   useFormikProps.values.research_line_id ===
                   'Selecione uma linha'
@@ -187,7 +186,7 @@ const CadastroFormModal: React.FC<CadastroFormModalProps> = ({
             </FormControl>
 
             <TextField
-              label="Título do Pré-Projeto"
+              label='Título do Pré-Projeto'
               fullWidth
               required
               name={'project_title'}
@@ -206,13 +205,13 @@ const CadastroFormModal: React.FC<CadastroFormModalProps> = ({
                 filePrefix={'project'}
               />
             </Box>
-            <Stack direction="row" spacing={2} mt={2}>
-              <Button fullWidth variant="outlined" onClick={onClose}>
+            <Stack direction='row' spacing={2} mt={2}>
+              <Button fullWidth variant='outlined' onClick={onClose}>
                 Cancelar
               </Button>
               <Button
                 fullWidth
-                variant="contained"
+                variant='contained'
                 disabled={loading}
                 onClick={useFormikProps.submitForm}
               >
