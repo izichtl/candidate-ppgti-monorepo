@@ -298,7 +298,7 @@ const DashboardCandidato = () => {
         });
         setTimeout(() => {
           logout();
-        }, 1500);
+        }, 2000);
       }
     }
   }, [cadidateValid, cadidateValidLoading, cadidateValidError]);
