@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Box, Stack, useTheme, Snackbar, Alert } from '@mui/material';
+import {
+  Button,
+  Box,
+  Stack,
+  useTheme,
+  Snackbar,
+  Alert,
+  Typography,
+} from '@mui/material';
 import PersonalDataCard from './cards/personal';
 import AcademicDataCard from './cards/academic';
 import RequiredDocumentsCard from './cards/documents';
@@ -9,7 +17,8 @@ import { useBoolean } from '../../hooks/use-boolean';
 import ConfirmTextInputModal from './modal';
 import { useHomologateApplication } from '../../hooks/create-application-homolog';
 import useSWRMutation, { SWRMutationResponse } from 'swr/mutation';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import ScrollToTop from '../scroll-top';
 type SelectProcess = {
   data: any;
   processId: number;
@@ -20,12 +29,11 @@ type SelectProcess = {
 
 const HomologDataCard: React.FC<SelectProcess> = ({
   data,
-  statusColor,
   processId,
   applicationId,
 }) => {
   const theme = useTheme();
-  const borderColor = statusColor || theme.palette.success.main;
+  const borderColor = theme.palette.text.disabled;
   const navigate = useNavigate();
 
   // Estado para controlar o Switch
@@ -88,7 +96,7 @@ const HomologDataCard: React.FC<SelectProcess> = ({
     checkedDadosPessoais &&
     checkedDadosAcademicos &&
     checkedDocumentos &&
-    checkedCotas &&
+    (checkedCotas || data.candidates.quota_id === 1) &&
     checkedPreProjeto;
 
   return (
@@ -99,6 +107,32 @@ const HomologDataCard: React.FC<SelectProcess> = ({
         sx={{ mt: 2, flexWrap: 'wrap' }}
       ></Stack>
       <br />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mb: 4,
+          flexWrap: 'wrap',
+          gap: 2,
+        }}
+      >
+        <ScrollToTop />
+        <Typography variant='h4' fontWeight='bold'></Typography>
+        <Button
+          onClick={() => navigate(-1)}
+          size='large'
+          variant='contained'
+          color={'primary'}
+          sx={{
+            '&:hover': {
+              bgcolor: theme.palette.info.light,
+            },
+          }}
+        >
+          Voltar
+        </Button>
+      </Box>
       <PersonalDataCard
         email={data.candidates.email}
         nome={data.candidates.name}
@@ -184,7 +218,7 @@ const HomologDataCard: React.FC<SelectProcess> = ({
             modal.onTrue();
           }}
         >
-          HOMOLOGAR
+          Homologar
         </Button>
         <Button
           color='error'
@@ -194,7 +228,7 @@ const HomologDataCard: React.FC<SelectProcess> = ({
             modal.onTrue();
           }}
         >
-          RECUSAR
+          Recusar
         </Button>
       </Box>
       {snackbar.open && (

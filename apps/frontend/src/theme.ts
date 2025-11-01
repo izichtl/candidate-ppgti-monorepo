@@ -5,39 +5,58 @@ const ppgtiTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1e3a8a',
       light: '#3b82f6',
-      dark: '#172554',
+      main: '#4789CA',
+      dark: '#1e3a8a',
+
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#06b6d4',
       light: '#67e8f9',
+      main: '#06b6d4',
       dark: '#0891b2',
+
       contrastText: '#ffffff',
     },
     text: {
       primary: '#1e293b',
       secondary: '#475569',
+      disabled: '#94a3b8',
     },
     background: {
       default: '#f1f5f9',
       paper: '#ffffff',
     },
     success: {
+      light: '#34d399',
       main: '#10b981',
-      contrastText: '#fff',
+      dark: '#047857',
+
+      contrastText: '#ffffff',
     },
     warning: {
+      light: '#fbbf24',
       main: '#f59e0b',
+      dark: '#b45309',
+
+      contrastText: '#000000',
     },
     error: {
+      light: '#f87171',
       main: '#ef4444',
+      dark: '#b91c1c',
+
+      contrastText: '#ffffff',
     },
     info: {
+      light: '#91bfeeff',
       main: '#3b82f6',
+      dark: '#1d4ed8',
+
+      contrastText: '#ffffff',
     },
   },
+
   typography: {
     fontFamily: '"Open Sans", sans-serif',
     fontSize: 14,

@@ -3,6 +3,7 @@ import Providers from './providers';
 import router from './router/routes';
 
 const App = () => {
+  log.info('app.tsx');
   return (
     <Providers>
       <RouterProvider router={router} />

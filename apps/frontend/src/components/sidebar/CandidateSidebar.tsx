@@ -1,11 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ArticleIcon from '@mui/icons-material/Article';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import DescriptionIcon from '@mui/icons-material/Description';
-import HelpIcon from '@mui/icons-material/Help';
 import InfoIcon from '@mui/icons-material/Info';
 import BaseSidebar, { MenuItem } from './BaseSidebar';
 import { useAuth } from '../../hooks/auth';
@@ -24,11 +22,6 @@ const CandidateSidebar: React.FC = () => {
   };
 
   const menuItems: MenuItem[] = [
-    {
-      text: 'Dashboard',
-      path: '/candidate/dashboard',
-      icon: <DashboardIcon />,
-    },
     {
       text: 'Inscrições',
       path: '/process',
@@ -64,7 +57,7 @@ const CandidateSidebar: React.FC = () => {
       menuItems={menuItems}
       secondaryMenuItems={secondaryMenuItems}
       userName={userName}
-      userType="Candidato"
+      userType='Candidato'
       userEmail={userEmail}
       onLogout={handleLogout}
     />

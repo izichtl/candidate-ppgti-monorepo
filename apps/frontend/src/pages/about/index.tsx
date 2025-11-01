@@ -15,11 +15,6 @@ const SystemInfoPage = () => {
       textAlign='center'
       px={{ xs: 3, md: 8 }}
       py={6}
-      sx={
-        {
-          // backgroundColor: '#fafafa',
-        }
-      }
     >
       <GraduationCap
         size={80}
@@ -78,6 +73,41 @@ const SystemInfoPage = () => {
           O sistema de inscrição possibilita a{' '}
           <strong>submissão de candidaturas</strong> ao curso de Mestrado, de
           acordo com os <strong>editais de seleção vigentes</strong>.
+        </Typography>
+
+        <Typography variant='h5' fontWeight='bold' gutterBottom mt={4}>
+          Desenvolvimento do Sistema
+        </Typography>
+
+        <Typography variant='body1' color='text.secondary' paragraph>
+          Este software foi desenvolvido no âmbito do <strong>PPGTI</strong>{' '}
+          como uma versão piloto, com o objetivo de{' '}
+          <strong>centralizar e automatizar as inscrições</strong> dos processos
+          seletivos do programa. A iniciativa visa otimizar o gerenciamento das
+          candidaturas, reduzir erros manuais e oferecer uma experiência mais
+          fluida para candidatos e a equipe de coordenação.
+        </Typography>
+
+        <Typography variant='body1' color='text.secondary' paragraph>
+          A aplicação é resultado de um esforço colaborativo entre discentes e
+          docentes do programa, integrando práticas de engenharia de software e
+          tecnologias modernas utilizadas no desenvolvimento web.
+        </Typography>
+
+        <Typography variant='h5' fontWeight='bold' gutterBottom mt={4}>
+          Suporte e Contato
+        </Typography>
+
+        <Typography variant='body1' color='text.secondary' paragraph>
+          Caso identifique alguma falha, erro ou comportamento inesperado no
+          sistema, entre em contato com a equipe de suporte do PPGTI através do
+          e-mail:{' '}
+          <strong>
+            <a href='mailto:coordenacao.ppgti@ifpb.edu.br'>
+              coordenacao.ppgti@ifpb.edu.br
+            </a>
+          </strong>
+          .
         </Typography>
       </Box>
 

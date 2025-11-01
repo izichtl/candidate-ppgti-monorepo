@@ -8,10 +8,8 @@ import { useLocation, Link } from 'react-router-dom';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import ArticleIcon from '@mui/icons-material/Article';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import DescriptionIcon from '@mui/icons-material/Description';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import AddIcon from '@mui/icons-material/Add';
@@ -24,7 +22,6 @@ export default function MenuContent() {
   const user = getUserFromToken();
 
   const committeeMenuItems = [
-    { href: '/comissao/dashboard', text: 'Dashboard', icon: <DashboardIcon /> },
     {
       href: '/comissao/processos',
       text: 'Processos Seletivos',

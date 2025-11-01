@@ -16,6 +16,7 @@ import {
   IconButton,
   Divider,
   ToggleButton,
+  useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ViewListIcon from '@mui/icons-material/ViewList';
@@ -79,6 +80,7 @@ export function filterApplicationsByStatus(
 }
 
 const ProcessAplicationList: React.FC = () => {
+  const theme = useTheme();
   const [status, setStatus] = useState<string | null>('all');
   const [pageData, setPageData] = useState<any>(mockSelectionProcess);
   const [applicationsArray, setApplicationsArray] = useState<any>([]);
@@ -135,9 +137,15 @@ const ProcessAplicationList: React.FC = () => {
               Inscrições realizadas
             </Typography>
             <Button
-              variant='contained'
               onClick={() => navigate(-1)}
               size='large'
+              variant='contained'
+              color={'primary'}
+              sx={{
+                '&:hover': {
+                  bgcolor: theme.palette.info.light,
+                },
+              }}
             >
               Voltar
             </Button>
@@ -172,7 +180,7 @@ const ProcessAplicationList: React.FC = () => {
               exclusive
               onChange={handleStatusChange}
             >
-              <ToggleButton color='info' value='all'>
+              <ToggleButton color='primary' value='all'>
                 Todas
               </ToggleButton>
               <ToggleButton color='warning' value='pending'>
@@ -189,12 +197,18 @@ const ProcessAplicationList: React.FC = () => {
               applicationsArray.map((item) => (
                 <Card
                   key={item.id}
+                  elevation={2}
                   sx={{
+                    p: 2.5,
+                    border: `2px solid ${
+                      item.valid
+                        ? theme.palette.text.disabled
+                        : theme.palette.text.disabled
+                    }`,
+                    borderRadius: 3,
+                    transition: '0.2s',
                     width: '100%',
-                    p: 2,
-                    borderLeft: '6px solid #2e7d32',
-                    boxShadow: 2,
-                    borderRadius: 2,
+                    '&:hover': { boxShadow: 6 },
                   }}
                 >
                   <CardContent sx={{ pb: 1 }}>
@@ -240,7 +254,17 @@ const ProcessAplicationList: React.FC = () => {
                       target='_blank'
                       rel='noopener noreferrer'
                     >
-                      <Button size='small' startIcon={<DescriptionIcon />}>
+                      <Button
+                        variant='contained'
+                        color={'primary'}
+                        sx={{
+                          '&:hover': {
+                            bgcolor: theme.palette.info.light,
+                          },
+                        }}
+                        size='small'
+                        startIcon={<DescriptionIcon />}
+                      >
                         Pre-Projeto
                       </Button>
                     </Link>
@@ -272,6 +296,12 @@ const ProcessAplicationList: React.FC = () => {
                     )}
                     <Button
                       variant='contained'
+                      color={'primary'}
+                      sx={{
+                        '&:hover': {
+                          bgcolor: theme.palette.info.light,
+                        },
+                      }}
                       disabled={
                         item.applications_verification[0] !== undefined &&
                         (getStatusInfo(

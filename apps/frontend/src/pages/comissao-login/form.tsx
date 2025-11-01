@@ -259,7 +259,14 @@ const Form = ({
           fullWidth
           variant='contained'
           color='primary'
-          sx={{ mt: 2 }}
+          sx={{
+            mt: 2,
+            '&:hover': {
+              bgcolor: theme.palette.info.light,
+              borderColor: theme.palette.info.light,
+              color: 'white',
+            },
+          }}
           onClick={handlerNextStep}
         >
           {accessType === 'register' ? 'Cadastrar' : 'Acessar'}

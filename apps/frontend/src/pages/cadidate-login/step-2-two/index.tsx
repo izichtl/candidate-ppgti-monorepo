@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   TextField,
@@ -18,10 +18,32 @@ import FormControl from '@mui/material/FormControl';
 import brazilianStates from '../../../utils/state-list';
 import { quotaOptionsPros } from '..';
 import ScrollToTop from '../../../components/scroll-top';
+import { IMaskInput } from 'react-imask';
 
 const shirnk = {
   inputLabel: { shrink: true },
 };
+
+const CEPmaskCustom = React.forwardRef<HTMLInputElement, any>(
+  function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <IMaskInput
+        {...other}
+        mask='00000-000'
+        definitions={{
+          '#': /[1-9]/,
+        }}
+        inputRef={ref}
+        onAccept={(value: any) =>
+          onChange({ target: { name: props.name, value } })
+        }
+        overwrite
+      />
+    );
+  }
+);
+
 const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
   const [disabled, setDisabled] = useState(true);
   const theme = useTheme();
@@ -86,13 +108,13 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
         }}
       >
         <ScrollToTop />
-        <Typography variant="h5" align="center" gutterBottom>
+        <Typography variant='h5' align='center' gutterBottom>
           Dados Pessoais
         </Typography>
         <Typography
-          variant="body2"
-          align="center"
-          color="text.secondary"
+          variant='body2'
+          align='center'
+          color='text.secondary'
           gutterBottom
         >
           Preencha os campos abaixo para continuar seu cadastro, todos os campos
@@ -106,17 +128,17 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             <TextField
               required
               slotProps={shirnk}
-              placeholder="Seu nome"
-              label="Nome de Registro"
-              name="name"
-              variant="outlined"
+              placeholder='Seu nome'
+              label='Nome de Registro'
+              name='name'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.name}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
-                useFormikProps.touched.name && useFormikProps.errors.name,
+                useFormikProps.touched.name && useFormikProps.errors.name
               )}
               helperText={
                 useFormikProps.touched.name ? useFormikProps.errors.name : ''
@@ -124,19 +146,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             />
             <TextField
               required
-              label="Identidade - RG"
-              placeholder="00.000.000-0"
+              label='Identidade - RG'
+              placeholder='00.000.000-0'
               slotProps={shirnk}
-              name="registration_"
-              variant="outlined"
+              name='registration_'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.registration_}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.registration_ &&
-                  useFormikProps.errors.registration_,
+                  useFormikProps.errors.registration_
               )}
               helperText={
                 useFormikProps.touched.registration_
@@ -146,19 +168,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             />
             <TextField
               required
-              label="Orgão Expedidor"
+              label='Orgão Expedidor'
               slotProps={shirnk}
-              placeholder="DETRAN/PB"
-              name="registration_place"
-              variant="outlined"
+              placeholder='DETRAN/PB'
+              name='registration_place'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.registration_place}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.registration_place &&
-                  useFormikProps.errors.registration_place,
+                  useFormikProps.errors.registration_place
               )}
               helperText={
                 useFormikProps.touched.registration_place
@@ -166,14 +188,14 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
                   : ''
               }
             />
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel>Estado</InputLabel>
+            <FormControl margin='normal' required fullWidth>
+              <InputLabel>Estado Emissor</InputLabel>
               <Select
                 fullWidth
-                name="address_state"
+                name='address_state'
                 value={useFormikProps.values.address_state}
                 onChange={useFormikProps.handleChange}
-                label="UF"
+                label='UF'
                 MenuProps={{
                   PaperProps: {
                     sx: {
@@ -193,19 +215,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             </FormControl>
             <TextField
               required
-              label="Outro Email"
+              label='Outro Email'
               slotProps={shirnk}
-              placeholder="segundo@email.com"
-              name="other_email"
-              variant="outlined"
+              placeholder='segundo@email.com'
+              name='other_email'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.other_email}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.other_email &&
-                  useFormikProps.errors.other_email,
+                  useFormikProps.errors.other_email
               )}
               helperText={
                 useFormikProps.touched.other_email
@@ -213,16 +235,16 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
                   : ''
               }
             />
-            <FormControl fullWidth required margin="normal">
+            <FormControl fullWidth required margin='normal'>
               <InputLabel>Sexo Biológico</InputLabel>
               <Select
-                name="sex"
+                name='sex'
                 value={useFormikProps.values.sex}
                 onChange={useFormikProps.handleChange}
-                label="Sexo Biológico"
+                label='Sexo Biológico'
               >
-                <MenuItem value="Masculino">Masculino</MenuItem>
-                <MenuItem value="Feminino">Feminino</MenuItem>
+                <MenuItem value='Masculino'>Masculino</MenuItem>
+                <MenuItem value='Feminino'>Feminino</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -231,18 +253,18 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
           <Grid size={{ xs: 12 }}>
             <TextField
               required
-              label="Endereço"
+              label='Endereço'
               slotProps={shirnk}
-              placeholder="Rua da sua casa"
-              name="address"
-              variant="outlined"
+              placeholder='Rua da sua casa'
+              name='address'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.address}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
-                useFormikProps.touched.address && useFormikProps.errors.address,
+                useFormikProps.touched.address && useFormikProps.errors.address
               )}
               helperText={
                 useFormikProps.touched.address
@@ -252,19 +274,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             />
             <TextField
               required
-              label="Número"
-              name="address_number"
+              label='Número'
+              name='address_number'
               slotProps={shirnk}
-              placeholder="00"
-              variant="outlined"
+              placeholder='00'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.address_number}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.address_number &&
-                  useFormikProps.errors.address_number,
+                  useFormikProps.errors.address_number
               )}
               helperText={
                 useFormikProps.touched.address_number
@@ -273,19 +295,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
               }
             />
             <TextField
-              label="Complemento"
-              name="address_complement"
+              label='Complemento'
+              name='address_complement'
               slotProps={shirnk}
-              placeholder="ap 00"
-              variant="outlined"
+              placeholder='ap 00'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.address_complement}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.address_complement &&
-                  useFormikProps.errors.address_complement,
+                  useFormikProps.errors.address_complement
               )}
               helperText={
                 useFormikProps.touched.address_complement
@@ -295,19 +317,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             />
             <TextField
               required
-              label="Bairro"
+              label='Bairro'
               slotProps={shirnk}
-              placeholder="Seu Bairro"
-              name="address_neighborhood"
-              variant="outlined"
+              placeholder='Seu Bairro'
+              name='address_neighborhood'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.address_neighborhood}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.address_neighborhood &&
-                  useFormikProps.errors.address_neighborhood,
+                  useFormikProps.errors.address_neighborhood
               )}
               helperText={
                 useFormikProps.touched.address_neighborhood
@@ -317,19 +339,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             />
             <TextField
               required
-              label="Cidade"
+              label='Cidade'
               slotProps={shirnk}
-              placeholder="Sua cidade"
-              name="address_city"
-              variant="outlined"
+              placeholder='Sua cidade'
+              name='address_city'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.address_city}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.address_city &&
-                  useFormikProps.errors.address_city,
+                  useFormikProps.errors.address_city
               )}
               helperText={
                 useFormikProps.touched.address_city
@@ -337,14 +359,14 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
                   : ''
               }
             />
-            <FormControl required fullWidth margin="normal">
+            <FormControl required fullWidth margin='normal'>
               <InputLabel>UF</InputLabel>
               <Select
                 fullWidth
-                name="registration_state"
+                name='registration_state'
                 value={useFormikProps.values.registration_state}
                 onChange={useFormikProps.handleChange}
-                label="UF"
+                label='UF'
                 MenuProps={{
                   PaperProps: {
                     sx: {
@@ -364,41 +386,44 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
             </FormControl>
             <TextField
               required
-              label="CEP"
-              name="address_zipcode"
+              label='CEP'
+              name='address_zipcode'
               slotProps={shirnk}
-              placeholder="00000-00"
-              variant="outlined"
+              placeholder='00000-000'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.address_zipcode}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.address_zipcode &&
-                  useFormikProps.errors.address_zipcode,
+                  useFormikProps.errors.address_zipcode
               )}
               helperText={
                 useFormikProps.touched.address_zipcode
                   ? useFormikProps.errors.address_zipcode
                   : ''
               }
+              InputProps={{
+                inputComponent: CEPmaskCustom as any,
+              }}
             />
             <TextField
               required
-              label="Telefone Celular"
+              label='Telefone Celular'
               slotProps={shirnk}
-              placeholder="83000000000"
-              name="cell_phone"
-              variant="outlined"
+              placeholder='83000000000'
+              name='cell_phone'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.cell_phone}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
                 useFormikProps.touched.cell_phone &&
-                  useFormikProps.errors.cell_phone,
+                  useFormikProps.errors.cell_phone
               )}
               helperText={
                 useFormikProps.touched.cell_phone
@@ -407,18 +432,18 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
               }
             />
             <TextField
-              label="Telefone Fixo"
-              name="phone"
+              label='Telefone Fixo'
+              name='phone'
               slotProps={shirnk}
-              placeholder="00000000000"
-              variant="outlined"
+              placeholder='00000000000'
+              variant='outlined'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={useFormikProps.values.phone}
               onChange={useFormikProps.handleChange}
               onBlur={useFormikProps.handleBlur}
               error={Boolean(
-                useFormikProps.touched.phone && useFormikProps.errors.phone,
+                useFormikProps.touched.phone && useFormikProps.errors.phone
               )}
               helperText={
                 useFormikProps.touched.phone ? useFormikProps.errors.phone : ''
@@ -427,8 +452,8 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
           </Grid>
 
           <Grid size={{ xs: 12 }}>
-            <Box p={2} border={1} borderRadius={2} borderColor="grey.400">
-              <Typography variant="h6" gutterBottom>
+            <Box p={2} border={1} borderRadius={2} borderColor='grey.400'>
+              <Typography variant='h6' gutterBottom>
                 Optante por Cota
               </Typography>
               {quotaOptions.map((option: quotaOptionsPros) => {
@@ -437,6 +462,7 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
                     key={option.value}
                     control={
                       <Switch
+                        color={'primary'}
                         checked={useFormikProps.values.quota === option.value}
                         onChange={handleToggle.bind(null, option.value)}
                       />
@@ -459,7 +485,7 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
               }}
             >
               <Typography
-                variant="subtitle1"
+                variant='subtitle1'
                 sx={{
                   flex: 1,
                   textAlign: { xs: 'center', sm: 'left' },
@@ -470,16 +496,19 @@ const StepTwo = ({ handlerNextStep, useFormikProps, quotaOptions }: any) => {
               </Typography>
 
               <Button
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
                 disabled={disabled}
-                size="large"
+                size='large'
                 sx={{
                   py: 1.5,
                   fontSize: '1.1rem',
                   borderRadius: 2,
                   width: { xs: '100%', sm: 'auto' },
                   ml: { xs: 0, sm: 'auto' },
+                  '&:hover': {
+                    bgcolor: theme.palette.info.light,
+                  },
                 }}
                 onClick={handlerNextStep}
               >

@@ -7,11 +7,6 @@ import { useMatches } from 'react-router-dom';
 export default function Layout() {
   const { isAuthenticated } = useAuth();
 
-  // TODO importar o user
-  // se o user estiver logado
-  // vai acessar tudo pela dashboard
-  // se não vai acesar pelo layout com header
-
   const matches = useMatches();
 
   useEffect(() => {
@@ -24,8 +19,7 @@ export default function Layout() {
   }, [matches]);
 
   const auth = isAuthenticated();
-  useEffect(() => {
-    console.log('Auth status:', auth);
-  }, [auth]);
+  useEffect(() => {}, [auth]);
+
   return auth ? <InnerLayout /> : <OutLayout />;
 }

@@ -39,7 +39,7 @@ const CandidateProfilePage = () => {
           <Grid container spacing={2} alignItems='center' mb={4}>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant='h3' fontWeight='bold'>
-                Meu Cadastro
+                Seu Cadastro
               </Typography>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -52,7 +52,16 @@ const CandidateProfilePage = () => {
               </Typography>
             </Grid>
           </Grid>
-
+          <Typography
+            variant='body1'
+            align='center'
+            color='text.secondary'
+            gutterBottom
+          >
+            Caso precise <strong>alterar seus dados cadastrais</strong>, faça um
+            novo login e selecione <strong>"Quero revisar meus dados"</strong>
+          </Typography>
+          <br />
           <CandidateFullDataCard data={candidateFullData} />
         </>
       )}

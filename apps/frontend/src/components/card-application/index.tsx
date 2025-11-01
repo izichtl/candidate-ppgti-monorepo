@@ -35,8 +35,8 @@ const CardApplication: React.FC<CardApplicationProps> = ({ inscricoes }) => {
             p: 2.5,
             border: `2px solid ${
               item.valid
-                ? theme.palette.success.main
-                : theme.palette.warning.main
+                ? theme.palette.text.disabled
+                : theme.palette.text.disabled
             }`,
             borderRadius: 3,
             cursor: 'pointer',
@@ -66,6 +66,8 @@ const CardApplication: React.FC<CardApplicationProps> = ({ inscricoes }) => {
           {item.valid && (
             <>
               <Button
+                color={'primary'}
+                variant='contained'
                 component={Link}
                 // external link
                 href={item.project_url}
@@ -74,12 +76,10 @@ const CardApplication: React.FC<CardApplicationProps> = ({ inscricoes }) => {
                 sx={{
                   mt: 2,
                   px: 3,
-                  bgcolor: theme.palette.success.main,
                   '&:hover': {
-                    bgcolor: theme.palette.success.dark,
+                    bgcolor: theme.palette.info.light,
                   },
                 }}
-                variant='contained'
               >
                 Pré-Projeto
               </Button>

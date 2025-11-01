@@ -11,6 +11,9 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import SideMenuMobile from './SideMenuMobile';
 import MenuButton from './MenuButton';
 import ColorModeIconDropdown from '../../../../components/r-icon';
+import { useAuth } from '../../../../hooks/auth';
+import { isCommitteeUser } from '../../../../utils/user-validation';
+import SitemarkIcon from '../../../../components/r-icon';
 
 const Toolbar = styled(MuiToolbar)({
   width: '100%',
@@ -29,7 +32,14 @@ const Toolbar = styled(MuiToolbar)({
 });
 
 export default function AppNavbar() {
+  log.info('AppNavbar');
   const [open, setOpen] = React.useState(false);
+  // const { getUserFromToken } = useAuth();
+  // // const location = useLocation();
+  // const user = getUserFromToken();
+  //   const mainListItems = isCommitteeUser(user)
+  //     ? committeeMenuItems
+  //     : candidateMenuItems;
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -63,16 +73,13 @@ export default function AppNavbar() {
             spacing={1}
             sx={{ justifyContent: 'center', mr: 'auto' }}
           >
-            <CustomIcon />
+            <SitemarkIcon />
             <Typography
               variant='h4'
               component='h1'
               sx={{ color: 'text.primary' }}
-            >
-              Dashboard
-            </Typography>
+            ></Typography>
           </Stack>
-          <ColorModeIconDropdown />
           <MenuButton aria-label='menu' onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>

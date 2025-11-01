@@ -15,7 +15,10 @@
     "types": ["node"],
     "noEmit": true,
     "skipLibCheck": true,
-    "strict": false
+    "strict": false,
+    "paths": {
+      "@colorful-console": ["../colorful-console/dist"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
