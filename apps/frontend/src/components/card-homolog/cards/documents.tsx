@@ -8,7 +8,9 @@ import {
   Switch,
   Button,
   Link,
+  useTheme,
 } from '@mui/material';
+import { filePrefixes } from '../../../utils/files-hash-mapper';
 
 type Props = {
   borderColor: string;
@@ -33,6 +35,7 @@ const RequiredDocumentsCard: React.FC<Props> = ({
   showMilitaryClearance,
   documents,
 }) => {
+  const theme = useTheme();
   const documentLabels: {
     key: keyof typeof documents;
     label: string;
@@ -76,7 +79,7 @@ const RequiredDocumentsCard: React.FC<Props> = ({
       elevation={2}
       sx={{
         p: 2.5,
-        border: `2px solid ${borderColor}`,
+        border: `2px solid ${theme.palette.text.disabled}`,
         borderRadius: 3,
         width: '100%',
         mb: 3,
@@ -91,7 +94,7 @@ const RequiredDocumentsCard: React.FC<Props> = ({
           alignItems: 'center',
         }}
       >
-        <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }} fontSize={25}>
+        <Typography variant='h6' fontWeight='bold' sx={{ mb: 2 }} fontSize={25}>
           Upload de Arquivos Obrigatórios
         </Typography>
         <FormControlLabel
@@ -99,18 +102,18 @@ const RequiredDocumentsCard: React.FC<Props> = ({
             <Switch
               checked={checkedStatusGeral}
               onChange={handleToggleStatusGeral}
-              name="statusGeral"
-              color="success"
+              name='statusGeral'
+              color='success'
             />
           }
           label={checkedStatusGeral ? 'Conforme' : 'Não Conforme'}
-          labelPlacement="start"
+          labelPlacement='start'
         />
       </Box>
 
       <Divider sx={{ mb: 2 }} />
 
-      {documentLabels.map(({ key, label, show }) => {
+      {filePrefixes.map(({ key, label, show }) => {
         if (show === false) return null;
 
         const fileUrl = documents[key];
@@ -118,17 +121,27 @@ const RequiredDocumentsCard: React.FC<Props> = ({
 
         return (
           <React.Fragment key={key}>
-            <Typography variant="body1" sx={{ mb: 1 }}>
+            <Typography variant='body1' sx={{ mb: 1 }}>
               <strong>{label}</strong>
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Link
                 href={fileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                underline="none"
+                target='_blank'
+                rel='noopener noreferrer'
+                underline='none'
               >
-                <Button variant="outlined">Acessar Documento</Button>
+                <Button
+                  variant='contained'
+                  color={'primary'}
+                  sx={{
+                    '&:hover': {
+                      bgcolor: theme.palette.info.light,
+                    },
+                  }}
+                >
+                  Acessar Documento
+                </Button>
               </Link>
             </Box>
           </React.Fragment>

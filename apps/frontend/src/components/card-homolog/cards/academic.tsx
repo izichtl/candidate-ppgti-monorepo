@@ -9,6 +9,8 @@ import {
   FormControlLabel,
   Switch,
   Link,
+  useTheme,
+  Button,
 } from '@mui/material';
 
 type Props = {
@@ -38,6 +40,7 @@ const AcademicDataCard: React.FC<Props> = ({
   checkedDadosAcademicos,
   handleAcademicDataChange,
 }) => {
+  const theme = useTheme();
   return (
     <Paper
       elevation={2}
@@ -100,9 +103,20 @@ const AcademicDataCard: React.FC<Props> = ({
         {instituicaoEspecializacao}
       </Typography>
       <Typography variant='body1' sx={{ mb: 1 }}>
-        <strong>Link Lattes:</strong>{' '}
+        <strong>Link Lattes:</strong>
+        {' - '}
         <Link href={linkLattes} target='_blank' rel='noopener noreferrer'>
-          Acesse o Currículo Lattes
+          <Button
+            color={'primary'}
+            variant='contained'
+            sx={{
+              '&:hover': {
+                bgcolor: theme.palette.info.light,
+              },
+            }}
+          >
+            Currículo Lattes
+          </Button>
         </Link>
       </Typography>
     </Paper>

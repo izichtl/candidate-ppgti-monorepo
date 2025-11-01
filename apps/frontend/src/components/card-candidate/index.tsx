@@ -17,10 +17,9 @@ type Props = {
 
 const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
-  const borderColor = theme.palette.success.main;
+  const borderColor = theme.palette.text.disabled;
   const { candidate, documents } = data;
 
-  // Map de labels formatados
   const documentLabels: { key: keyof typeof documents; label: string }[] = [
     { key: 'score_form', label: 'Formulário de Pontuação' },
     {
@@ -42,7 +41,6 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      {/* DADOS PESSOAIS */}
       <Paper
         elevation={2}
         sx={{
@@ -96,7 +94,6 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
         </Typography>
       </Paper>
 
-      {/* FORMAÇÃO ACADÊMICA */}
       <Paper
         elevation={2}
         sx={{
@@ -137,7 +134,8 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
           {candidate.specialization_institution || '-'}
         </Typography>
         <Typography variant='body1' sx={{ mb: 1 }}>
-          <strong>Currículo Lattes:</strong>{' '}
+          <strong>Currículo Lattes:</strong>
+          {' -  '}
           {candidate.lattes_link ? (
             <Link
               href={candidate.lattes_link}
@@ -145,7 +143,17 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
               rel='noopener noreferrer'
               underline='none'
             >
-              <Button variant='outlined'>Acessar Lattes</Button>
+              <Button
+                color={'primary'}
+                variant='contained'
+                sx={{
+                  '&:hover': {
+                    bgcolor: theme.palette.info.light,
+                  },
+                }}
+              >
+                Currículo Lattes
+              </Button>
             </Link>
           ) : (
             '-'
@@ -153,7 +161,6 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
         </Typography>
       </Paper>
 
-      {/* DOCUMENTOS ENVIADOS */}
       <Paper
         elevation={2}
         sx={{
@@ -186,7 +193,17 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
                   rel='noopener noreferrer'
                   underline='none'
                 >
-                  <Button variant='outlined'>Acessar Documento</Button>
+                  <Button
+                    color={'primary'}
+                    variant='contained'
+                    sx={{
+                      '&:hover': {
+                        bgcolor: theme.palette.info.light,
+                      },
+                    }}
+                  >
+                    Acessar Documento
+                  </Button>
                 </CustomLink>
               </Box>
               <Divider sx={{ mb: 1 }} />
@@ -194,7 +211,6 @@ const CandidateFullDataCard: React.FC<Props> = ({ data }) => {
           );
         })}
 
-        {/* Caso não haja documentos */}
         {Object.values(documents).filter(Boolean).length === 0 && (
           <Typography color='text.secondary'>
             Nenhum documento enviado.

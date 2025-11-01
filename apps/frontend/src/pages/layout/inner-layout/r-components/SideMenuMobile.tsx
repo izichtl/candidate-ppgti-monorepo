@@ -10,6 +10,8 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import MenuButton from './MenuButton';
 import MenuContent from './MenuContent';
 import CardAlert from './CardAlert';
+import { useAuth } from '../../../../hooks/auth';
+// TODO
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
@@ -20,6 +22,9 @@ export default function SideMenuMobile({
   open,
   toggleDrawer,
 }: SideMenuMobileProps) {
+  const { getUserFromToken } = useAuth();
+  const user = getUserFromToken();
+  const userName = user.name;
   return (
     <Drawer
       anchor='right'
@@ -46,17 +51,19 @@ export default function SideMenuMobile({
           >
             <Avatar
               sizes='small'
-              alt='Riley Carter'
-              src='/static/images/avatar/7.jpg'
-              sx={{ width: 24, height: 24 }}
+              alt={userName}
+              src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
+                userName
+              )}&background=random&color=fff&rounded=true`}
+              sx={{ width: 36, height: 36 }}
             />
             <Typography component='p' variant='h6'>
-              Riley Carter
+              {userName}
             </Typography>
           </Stack>
-          <MenuButton showBadge>
+          {/* <MenuButton showBadge>
             <NotificationsRoundedIcon />
-          </MenuButton>
+          </MenuButton> */}
         </Stack>
         <Divider />
         <Stack sx={{ flexGrow: 1 }}>

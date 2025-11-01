@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +13,7 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Sitemark from '../r-icon/index'; // Mantido
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -21,7 +21,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: 'space-between',
   flexShrink: 0,
   backdropFilter: 'blur(24px)',
-  borderBottom: `2px solid ${theme.palette.primary.main}`,
+  borderBottom: `2px solid ${theme.palette.primary.dark}`,
   borderRadius: 0,
   padding: '8px 12px',
 }));
@@ -29,10 +29,13 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
+  const theme = useTheme();
+  log.success(theme);
 
   return (
     <AppBar
@@ -57,7 +60,7 @@ export default function AppAppBar() {
               <Button
                 onClick={() => navigate('/login')}
                 variant='text'
-                color='info'
+                color='primary'
                 size='small'
               >
                 Inscrições
@@ -65,7 +68,7 @@ export default function AppAppBar() {
               <Button
                 onClick={() => navigate('/documents')}
                 variant='text'
-                color='info'
+                color='primary'
                 size='small'
               >
                 Documentos
@@ -73,7 +76,7 @@ export default function AppAppBar() {
               <Button
                 onClick={() => navigate('/about')}
                 variant='text'
-                color='info'
+                color='primary'
                 size='small'
               >
                 Sobre
@@ -95,16 +98,38 @@ export default function AppAppBar() {
             <Button
               onClick={() => navigate('/login')}
               color='primary'
-              variant='contained'
+              variant={
+                location.pathname.match('comissao/login') === null
+                  ? 'contained'
+                  : 'outlined'
+              }
               size='small'
+              sx={{
+                '&:hover': {
+                  bgcolor: theme.palette.info.light,
+                  borderColor: theme.palette.info.light,
+                  color: 'white',
+                },
+              }}
             >
               Acessar Candidato
             </Button>
             <Button
               onClick={() => navigate('/comissao/login')}
               color='primary'
-              variant='outlined'
+              variant={
+                location.pathname.match('comissao/login') !== null
+                  ? 'contained'
+                  : 'outlined'
+              }
               size='small'
+              sx={{
+                '&:hover': {
+                  bgcolor: theme.palette.info.light,
+                  borderColor: theme.palette.info.light,
+                  color: 'white',
+                },
+              }}
             >
               Acesso Comissão
             </Button>

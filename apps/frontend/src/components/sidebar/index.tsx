@@ -3,19 +3,12 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 import CommitteeSidebar from './CommitteeSidebar';
 import CandidateSidebar from './CandidateSidebar';
+import { isCommitteeUser } from '../../utils/user-validation';
 
 const Sidebar: React.FC = () => {
   const { getUserFromToken } = useAuth();
-  const location = useLocation();
-
   const user = getUserFromToken();
-  const isCommitteeUser =
-    user &&
-    (user.role === 'committee' ||
-      user.user_type === 'committee' ||
-      location.pathname.includes('/comissao'));
-
-  return isCommitteeUser ? <CommitteeSidebar /> : <CandidateSidebar />;
+  return isCommitteeUser(user) ? <CommitteeSidebar /> : <CandidateSidebar />;
 };
 
 export default Sidebar;

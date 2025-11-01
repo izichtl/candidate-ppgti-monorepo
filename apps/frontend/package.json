@@ -41,6 +41,7 @@
     "react-dom": "18.2.0",
     "react-imask": "^7.6.1",
     "react-router-dom": "^7.4.0",
+    "render-colors": "^1.0.2",
     "swr": "^2.3.3",
     "yup": "^1.6.1"
   },

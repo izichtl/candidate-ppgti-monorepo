@@ -10,6 +10,7 @@ import {
   Alert,
   CircularProgress,
   Paper,
+  useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -53,7 +54,7 @@ const ComissaoDashboardPage: React.FC = () => {
   const [processToDelete, setProcessToDelete] =
     useState<SelectionProcess | null>(null);
   const [processToEdit, setProcessToEdit] = useState<SelectionProcess | null>(
-    null,
+    null
   );
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -61,6 +62,7 @@ const ComissaoDashboardPage: React.FC = () => {
     severity: 'success' as 'success' | 'error',
   });
   const navigate = useNavigate();
+  const theme = useTheme();
   const { getUserFromToken, logout } = useAuth();
 
   const userInfo = getUserFromToken();
@@ -72,7 +74,7 @@ const ComissaoDashboardPage: React.FC = () => {
     useGetSelectionProcessesFetcher,
     {
       refreshInterval: 30000,
-    },
+    }
   );
 
   const selectionProcesses: SelectionProcess[] = data?.data?.data || [];
@@ -83,7 +85,7 @@ const ComissaoDashboardPage: React.FC = () => {
       const { useDeleteSelectionProcessFetcher } =
         useDeleteSelectionProcess(arg);
       return await useDeleteSelectionProcessFetcher();
-    },
+    }
   );
 
   const handleFormClose = () => {
@@ -224,24 +226,30 @@ const ComissaoDashboardPage: React.FC = () => {
           mb: 4,
         }}
       >
-        <Typography variant="h5" gutterBottom>
+        <Typography variant='h5' gutterBottom>
           Processos Seletivos
         </Typography>
         <Button
-          variant="contained"
+          variant='contained'
+          color={'primary'}
           startIcon={<AddIcon />}
           onClick={() => setFormOpen(true)}
-          size="large"
+          sx={{
+            '&:hover': {
+              bgcolor: theme.palette.info.light,
+            },
+          }}
+          size='large'
         >
           Novo Processo Seletivo
         </Button>
       </Box>
 
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }}>
+        <Alert severity='error' sx={{ mb: 3 }}>
           Erro ao carregar processos seletivos. Tente novamente.
           {error.response?.status === 401 && (
-            <Typography variant="body2" sx={{ mt: 1 }}>
+            <Typography variant='body2' sx={{ mt: 1 }}>
               Sua sessão expirou. Redirecionando para login...
             </Typography>
           )}
@@ -254,15 +262,15 @@ const ComissaoDashboardPage: React.FC = () => {
         </Box>
       ) : selectionProcesses.length === 0 ? (
         <Paper sx={{ p: 4, textAlign: 'center' }}>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
+          <Typography variant='h6' color='text.secondary' gutterBottom>
             Nenhum processo seletivo encontrado
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant='body2' color='text.secondary' sx={{ mb: 2 }}>
             Crie seu primeiro processo seletivo para começar a gerenciar
             candidatos.
           </Typography>
           <Button
-            variant="contained"
+            variant='contained'
             startIcon={<AddIcon />}
             onClick={() => setFormOpen(true)}
           >
@@ -300,8 +308,8 @@ const ComissaoDashboardPage: React.FC = () => {
                   }}
                 >
                   <Typography
-                    variant="h6"
-                    component="h3"
+                    variant='h6'
+                    component='h3'
                     sx={{ flexGrow: 1, mr: 1 }}
                   >
                     {process.title}
@@ -309,7 +317,7 @@ const ComissaoDashboardPage: React.FC = () => {
                   <Chip
                     label={getStatusLabel(process.status)}
                     color={getStatusColor(process.status) as any}
-                    size="small"
+                    size='small'
                   />
                 </Box>
 
@@ -317,22 +325,22 @@ const ComissaoDashboardPage: React.FC = () => {
                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                     <Chip
                       label={process.program}
-                      variant="outlined"
-                      size="small"
-                      color="primary"
+                      variant='outlined'
+                      size='small'
+                      color='primary'
                     />
                     <Chip
                       label={`${process.year}.${process.semester}`}
-                      variant="outlined"
-                      size="small"
-                      color="secondary"
+                      variant='outlined'
+                      size='small'
+                      color='secondary'
                     />
                   </Box>
                 </Box>
 
                 <Typography
-                  variant="body2"
-                  color="text.secondary"
+                  variant='body2'
+                  color='text.secondary'
                   sx={{ mb: 2 }}
                 >
                   {process.description.length > 100
@@ -342,23 +350,23 @@ const ComissaoDashboardPage: React.FC = () => {
 
                 <Box sx={{ mb: 2 }}>
                   <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    component="div"
+                    variant='caption'
+                    color='text.secondary'
+                    component='div'
                   >
                     <strong>Início:</strong> {formatDate(process.start_date)}
                   </Typography>
                   <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    component="div"
+                    variant='caption'
+                    color='text.secondary'
+                    component='div'
                   >
                     <strong>Fim:</strong> {formatDate(process.end_date)}
                   </Typography>
                   <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    component="div"
+                    variant='caption'
+                    color='text.secondary'
+                    component='div'
                   >
                     <strong>Prazo de Inscrição:</strong>{' '}
                     {formatDate(process.application_deadline)}
@@ -369,9 +377,9 @@ const ComissaoDashboardPage: React.FC = () => {
                   process.documents_required.length > 0 && (
                     <Box sx={{ mb: 2 }}>
                       <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        component="div"
+                        variant='caption'
+                        color='text.secondary'
+                        component='div'
                         sx={{ mb: 1 }}
                       >
                         <strong>Documentos Obrigatórios:</strong>
@@ -383,15 +391,15 @@ const ComissaoDashboardPage: React.FC = () => {
                             <Chip
                               key={index}
                               label={doc}
-                              size="small"
-                              variant="outlined"
+                              size='small'
+                              variant='outlined'
                             />
                           ))}
                         {process.documents_required.length > 3 && (
                           <Chip
                             label={`+${process.documents_required.length - 3}`}
-                            size="small"
-                            variant="outlined"
+                            size='small'
+                            variant='outlined'
                           />
                         )}
                       </Box>
@@ -399,9 +407,25 @@ const ComissaoDashboardPage: React.FC = () => {
                   )}
               </CardContent>
               <CardActions sx={{ p: 2, pt: 0 }}>
-                <Button
-                  size="small"
+                {/* <Button
+                  size='small'
                   startIcon={<ViewListIcon />}
+                  onClick={() => {
+                    navigate(`/comissao/processos/${process.id}`);
+                  }}
+                >
+                  Inscrições Realizadas
+                </Button> */}
+                <Button
+                  color={'primary'}
+                  size='small'
+                  variant='contained'
+                  startIcon={<ViewListIcon />}
+                  sx={{
+                    '&:hover': {
+                      bgcolor: theme.palette.info.light,
+                    },
+                  }}
                   onClick={() => {
                     navigate(`/comissao/processos/${process.id}`);
                   }}
@@ -409,15 +433,32 @@ const ComissaoDashboardPage: React.FC = () => {
                   Inscrições Realizadas
                 </Button>
                 <Button
-                  size="small"
+                  color={'warning'}
+                  size='small'
+                  variant='contained'
+                  sx={{
+                    color: 'white',
+                    '&:hover': {
+                      bgcolor: theme.palette.warning.light,
+                      color: 'white',
+                    },
+                  }}
                   startIcon={<EditIcon />}
                   onClick={() => handleEditClick(process)}
                 >
                   Editar
                 </Button>
                 <Button
-                  size="small"
-                  color="error"
+                  color={'error'}
+                  size='small'
+                  variant='contained'
+                  sx={{
+                    color: 'white',
+                    '&:hover': {
+                      bgcolor: theme.palette.error.light,
+                      color: 'white',
+                    },
+                  }}
                   startIcon={<DeleteIcon />}
                   onClick={() => handleDeleteClick(process)}
                   disabled={deleteSelectionProcess.isMutating}
@@ -441,7 +482,7 @@ const ComissaoDashboardPage: React.FC = () => {
         open={deleteDialogOpen}
         onClose={handleDeleteCancel}
         onConfirm={handleDeleteConfirm}
-        title="Confirmar Exclusão"
+        title='Confirmar Exclusão'
         itemName={processToDelete?.title}
         message={`Tem certeza que deseja excluir o processo seletivo "${processToDelete?.title}"? Este processo será permanentemente removido.`}
         isLoading={deleteSelectionProcess.isMutating}

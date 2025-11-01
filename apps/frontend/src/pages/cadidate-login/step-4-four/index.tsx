@@ -183,8 +183,11 @@ const StepFour = ({ cpf, sex, quota }: any) => {
               gutterBottom
             >
               Anexe os documentos solicitados abaixo - Carregue um arquivo por
-              vez.
+              vez - Em seguida, clique em ENVIAR. Repita a operação para cada
+              uma das solicitações!
             </Typography>
+            <br />
+            <br />
             <Stack spacing={3}>
               {filePrefixes.map((input: any) => {
                 const id: string = input.id;
@@ -223,6 +226,9 @@ const StepFour = ({ cpf, sex, quota }: any) => {
                   py: 1.5,
                   fontSize: '1.1rem',
                   borderRadius: 2,
+                  '&:hover': {
+                    bgcolor: theme.palette.info.light,
+                  },
                 }}
                 onClick={useGoToDashboard}
               >

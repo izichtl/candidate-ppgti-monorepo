@@ -25,11 +25,6 @@ const CommitteeSidebar: React.FC = () => {
 
   const menuItems: MenuItem[] = [
     {
-      text: 'Dashboard',
-      path: '/comissao/dashboard',
-      icon: <DashboardIcon />,
-    },
-    {
       text: 'Processos Seletivos',
       path: '/comissao/processos',
       icon: <AppRegistrationIcon />,
@@ -64,7 +59,7 @@ const CommitteeSidebar: React.FC = () => {
       menuItems={menuItems}
       secondaryMenuItems={secondaryMenuItems}
       userName={userName}
-      userType="Comissão"
+      userType='Comissão'
       userEmail={userEmail}
       onLogout={handleLogout}
     />

@@ -97,11 +97,15 @@ const UploaderField = ({
                 />
                 <Button
                   variant='contained'
+                  color='primary'
                   component='span'
                   sx={(theme) => ({
                     px: 2.5,
                     py: 1,
                     fontSize: 14,
+                    '&:hover': {
+                      bgcolor: theme.palette.info.light,
+                    },
                     [theme.breakpoints.down('sm')]: {
                       fontSize: 13,
                       px: 1.5,
@@ -117,7 +121,7 @@ const UploaderField = ({
               </label>
               <Typography
                 variant='body2'
-                color='error'
+                color={fileSelected !== filePrefix ? 'error' : 'success'}
                 sx={{ marginTop: 1, fontWeight: 500 }}
               >
                 {fileSelected !== filePrefix
@@ -138,7 +142,7 @@ const UploaderField = ({
       <Button
         disabled={fileSelected !== filePrefix}
         variant='contained'
-        color='primary'
+        color='success'
         onClick={onClick}
         sx={{ marginTop: 1 }}
       >

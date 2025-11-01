@@ -26,7 +26,7 @@ const TextMaskCustom = React.forwardRef<HTMLInputElement, CustomProps>(
     return (
       <IMaskInput
         {...other}
-        mask="000.000.000-00"
+        mask='000.000.000-00'
         definitions={{
           '#': /[1-9]/,
         }}
@@ -37,7 +37,7 @@ const TextMaskCustom = React.forwardRef<HTMLInputElement, CustomProps>(
         overwrite
       />
     );
-  },
+  }
 );
 
 const StepOne = ({
@@ -51,7 +51,7 @@ const StepOne = ({
 
   const handleAccessChange = (
     event: React.MouseEvent<HTMLElement>,
-    newAccessType: 'register' | 'login' | null,
+    newAccessType: 'register' | 'login' | null
   ) => {
     if (newAccessType !== null) {
       setAccessType(newAccessType);
@@ -70,7 +70,7 @@ const StepOne = ({
         bgcolor: '#f0f4f8',
       }}
     >
-      <Container maxWidth="sm">
+      <Container maxWidth='sm'>
         <ScrollToTop />
         <Paper
           elevation={isMobile ? 0 : 3}
@@ -83,7 +83,7 @@ const StepOne = ({
             alignItems: 'center',
           }}
         >
-          <Typography variant="h5" align="center" gutterBottom>
+          <Typography variant='h5' align='center' gutterBottom>
             {accessType === 'register'
               ? 'Faça sua inscrição'
               : 'Acesse a plataforma'}
@@ -93,7 +93,7 @@ const StepOne = ({
             value={accessType}
             exclusive
             onChange={handleAccessChange}
-            sx={{ mb: 3, flexWrap: 'wrap' }} // permite quebra em telas pequenas
+            sx={{ mb: 3, flexWrap: 'wrap' }}
           >
             {['register', 'login'].map((type) => (
               <ToggleButton
@@ -113,12 +113,13 @@ const StepOne = ({
                     color: '#fff',
                   },
                   '&.Mui-selected:hover': {
-                    bgcolor: 'primary.dark',
+                    bgcolor: 'info.light',
                   },
                   '&:hover': {
-                    bgcolor: alpha(theme.palette.primary.main, 0.08),
+                    bgcolor: theme.palette.info.light,
+                    borderColor: theme.palette.info.light,
+                    color: 'white',
                   },
-
                   [theme.breakpoints.down('sm')]: {
                     flex: 1,
                     px: 2,
@@ -131,28 +132,28 @@ const StepOne = ({
             ))}
           </ToggleButtonGroup>
 
-          <Typography variant="body1" align="center" gutterBottom>
+          <Typography variant='body1' align='center' gutterBottom>
             {accessType === 'register'
               ? 'Preencha os campos para cadastrar sua inscrição, sua senha será o CPF combinado com Email.'
               : 'Caso tenha iniciado sua inscrição, acesse aqui.'}
           </Typography>
 
           <Box
-            component="form"
+            component='form'
             noValidate
-            autoComplete="off"
+            autoComplete='off'
             sx={{ width: '100%' }}
           >
             {accessType === 'register' ? (
               <>
                 <TextField
                   required
-                  label="Nome Social"
-                  name="social_name"
-                  variant="outlined"
-                  placeholder="Nome social"
+                  label='Nome Social'
+                  name='social_name'
+                  variant='outlined'
+                  placeholder='Nome social'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   value={useFormikProps.values.social_name}
                   onChange={useFormikProps.handleChange}
                   // error={
@@ -163,7 +164,7 @@ const StepOne = ({
                   onBlur={useFormikProps.handleBlur}
                   error={Boolean(
                     useFormikProps.touched.social_name &&
-                      useFormikProps.errors.social_name,
+                      useFormikProps.errors.social_name
                   )}
                   helperText={
                     useFormikProps.touched.social_name
@@ -173,18 +174,18 @@ const StepOne = ({
                 />
                 <TextField
                   required
-                  label="Email"
-                  name="email"
-                  variant="outlined"
-                  placeholder="seu-email@aqui.com"
-                  type="email"
+                  label='Email'
+                  name='email'
+                  variant='outlined'
+                  placeholder='seu-email@aqui.com'
+                  type='email'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   value={useFormikProps.values.email}
                   onChange={useFormikProps.handleChange}
                   onBlur={useFormikProps.handleBlur}
                   error={Boolean(
-                    useFormikProps.touched.email && useFormikProps.errors.email,
+                    useFormikProps.touched.email && useFormikProps.errors.email
                   )}
                   helperText={
                     useFormikProps.touched.email
@@ -194,17 +195,17 @@ const StepOne = ({
                 />
                 <TextField
                   required
-                  label="CPF"
-                  name="cpf"
-                  variant="outlined"
-                  placeholder="111.222.333-44"
+                  label='CPF'
+                  name='cpf'
+                  variant='outlined'
+                  placeholder='111.222.333-44'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   value={useFormikProps.values.cpf}
                   onChange={useFormikProps.handleChange}
                   onBlur={useFormikProps.handleBlur}
                   error={Boolean(
-                    useFormikProps.touched.cpf && useFormikProps.errors.cpf,
+                    useFormikProps.touched.cpf && useFormikProps.errors.cpf
                   )}
                   helperText={
                     useFormikProps.touched.cpf ? useFormikProps.errors.cpf : ''
@@ -219,16 +220,16 @@ const StepOne = ({
                 <TextField
                   required
                   fullWidth
-                  label="Email"
-                  name="email"
-                  variant="outlined"
-                  placeholder="seu-email@aqui.com"
-                  margin="normal"
+                  label='Email'
+                  name='email'
+                  variant='outlined'
+                  placeholder='seu-email@aqui.com'
+                  margin='normal'
                   value={useFormikProps.values.email}
                   onChange={useFormikProps.handleChange}
                   onBlur={useFormikProps.handleBlur}
                   error={Boolean(
-                    useFormikProps.touched.email && useFormikProps.errors.email,
+                    useFormikProps.touched.email && useFormikProps.errors.email
                   )}
                   helperText={
                     useFormikProps.touched.email
@@ -239,17 +240,17 @@ const StepOne = ({
                 <TextField
                   required
                   fullWidth
-                  label="CPF"
-                  name="cpf"
-                  type="text"
-                  variant="outlined"
-                  placeholder="111.222.333-44"
-                  margin="normal"
+                  label='CPF'
+                  name='cpf'
+                  type='text'
+                  variant='outlined'
+                  placeholder='111.222.333-44'
+                  margin='normal'
                   value={useFormikProps.values.cpf}
                   onChange={useFormikProps.handleChange}
                   onBlur={useFormikProps.handleBlur}
                   error={Boolean(
-                    useFormikProps.touched.cpf && useFormikProps.errors.cpf,
+                    useFormikProps.touched.cpf && useFormikProps.errors.cpf
                   )}
                   helperText={
                     useFormikProps.touched.cpf ? useFormikProps.errors.cpf : ''
@@ -263,9 +264,16 @@ const StepOne = ({
 
             <Button
               fullWidth
-              variant="contained"
-              color="primary"
-              sx={{ mt: 2 }}
+              variant='contained'
+              color='primary'
+              sx={{
+                mt: 2,
+                '&:hover': {
+                  bgcolor: theme.palette.info.light,
+                  borderColor: theme.palette.info.light,
+                  color: 'white',
+                },
+              }}
               onClick={handlerNextStep}
             >
               {accessType === 'register' ? 'Cadastrar' : 'Acessar'}
