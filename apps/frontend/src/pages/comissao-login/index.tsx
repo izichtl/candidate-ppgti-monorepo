@@ -23,7 +23,7 @@ const ComissaoLoginPage: React.FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [isLoginMode, setIsLoginMode] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -60,7 +60,7 @@ const ComissaoLoginPage: React.FC = () => {
       return Yup.object().shape({
         matricula: Yup.string().required('Matrícula é obrigatório'),
         authorizationCode: Yup.string().required(
-          'Código de autorização é obrigatório',
+          'Código de autorização é obrigatório'
         ),
       });
     }
@@ -69,7 +69,7 @@ const ComissaoLoginPage: React.FC = () => {
       return Yup.object().shape({
         matricula: Yup.string().required('Matrícula é obrigatório'),
         authorizationCode: Yup.string().required(
-          'Código de autorização é obrigatório',
+          'Código de autorização é obrigatório'
         ),
         name: Yup.string().required('Nome é obrigatório'),
         email: Yup.string()
@@ -127,7 +127,7 @@ const ComissaoLoginPage: React.FC = () => {
     useComissaoRegisterFetcher,
     {
       revalidate: false,
-    },
+    }
   );
 
   const {
@@ -138,7 +138,7 @@ const ComissaoLoginPage: React.FC = () => {
     useComissaoLoginFetcher,
     {
       revalidate: false,
-    },
+    }
   );
 
   const handlerLogin = async () => {
@@ -208,7 +208,7 @@ const ComissaoLoginPage: React.FC = () => {
             bgcolor: '#f0f4f8',
           }}
         >
-          <Container maxWidth="sm">
+          <Container maxWidth='sm'>
             <Form
               useFormikProps={useFormikProps}
               handlerNextStep={handleButtonClick}

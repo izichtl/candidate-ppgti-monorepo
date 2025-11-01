@@ -22,7 +22,7 @@ type Props = {
   borderColor: string;
   checkedDadosAcademicos: boolean;
   handleAcademicDataChange: (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => void;
 };
 
@@ -58,50 +58,50 @@ const AcademicDataCard: React.FC<Props> = ({
           alignItems: 'center',
         }}
       >
-        <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }} fontSize={25}>
+        <Typography variant='h6' fontWeight='bold' sx={{ mb: 2 }} fontSize={25}>
           Dados Acadêmicos
         </Typography>
-        <Stack direction="row" spacing={1}>
+        <Stack direction='row' spacing={1}>
           <FormControlLabel
             control={
               <Switch
                 checked={checkedDadosAcademicos}
                 onChange={handleAcademicDataChange}
-                name="statusSwitch"
-                color="success"
+                name='statusSwitch'
+                color='success'
                 sx={{ ml: 6 }}
               />
             }
             label={checkedDadosAcademicos ? 'Conforme' : 'Não Conforme'}
-            labelPlacement="start"
+            labelPlacement='start'
             sx={{ height: '100%' }}
           />
         </Stack>
       </Box>
 
       <Divider sx={{ mb: 2 }} />
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Graduação:</strong> {graduacao}
       </Typography>
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Ano de Graduação:</strong> {anoGraduacao}
       </Typography>
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Instituição de Graduação:</strong> {instituicaoGraduacao}
       </Typography>
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Curso de Especialização:</strong> {cursoEspecializacao}
       </Typography>
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Ano de Especialização:</strong> {anoEspecializacao}
       </Typography>
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Instituição de Especialização:</strong>{' '}
         {instituicaoEspecializacao}
       </Typography>
-      <Typography variant="body1" sx={{ mb: 1 }}>
+      <Typography variant='body1' sx={{ mb: 1 }}>
         <strong>Link Lattes:</strong>{' '}
-        <Link href={linkLattes} target="_blank" rel="noopener noreferrer">
+        <Link href={linkLattes} target='_blank' rel='noopener noreferrer'>
           Acesse o Currículo Lattes
         </Link>
       </Typography>

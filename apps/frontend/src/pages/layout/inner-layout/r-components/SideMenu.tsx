@@ -10,6 +10,7 @@ import MenuContent from './MenuContent';
 import CardAlert from './CardAlert';
 import { useAuth } from '../../../../hooks/auth';
 import { useLocation } from 'react-router-dom';
+import { isCommitteeUser } from '../../../../utils/user-validation';
 
 const drawerWidth = 300;
 
@@ -26,21 +27,14 @@ const Drawer = styled(MuiDrawer)({
 
 export default function SideMenu() {
   const { getUserFromToken } = useAuth();
-  const location = useLocation();
 
   const user = React.useMemo(() => getUserFromToken(), [getUserFromToken]);
 
   const userName = user?.name || user?.social_name || 'Usuario';
 
-  const isCommitteeUser =
-    user &&
-    (user.role === 'committee' ||
-      user.user_type === 'committee' ||
-      location.pathname.includes('/comissao'));
-
   return (
     <Drawer
-      variant="permanent"
+      variant='permanent'
       sx={{
         display: { xs: 'none', md: 'block' },
         [`& .${drawerClasses.paper}`]: {
@@ -49,7 +43,7 @@ export default function SideMenu() {
       }}
     >
       <Stack
-        direction="row"
+        direction='row'
         sx={{
           p: 2,
           gap: 1,
@@ -59,22 +53,22 @@ export default function SideMenu() {
         }}
       >
         <Avatar
-          sizes="small"
-          alt="NOME DO USUÁRIO"
+          sizes='small'
+          alt='NOME DO USUÁRIO'
           src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
-            userName,
+            userName
           )}&background=random&color=fff&rounded=true`}
           sx={{ width: 36, height: 36 }}
         />
         <Box sx={{ mr: 'auto' }}>
           <Typography
-            variant="body2"
+            variant='body2'
             sx={{ fontWeight: 500, lineHeight: '16px' }}
           >
             {userName}
           </Typography>
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            {isCommitteeUser ? 'Comissão' : 'Candidato'}
+          <Typography variant='caption' sx={{ color: 'text.secondary' }}>
+            {isCommitteeUser(user) ? 'Comissão' : 'Candidato'}
           </Typography>
         </Box>
       </Stack>

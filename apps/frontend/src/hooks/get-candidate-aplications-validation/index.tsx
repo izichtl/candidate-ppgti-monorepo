@@ -28,7 +28,7 @@ export const useGetCandidateAplicationsValidation = () => {
 
   const { data, error, isLoading } = useSWR<UserApplicationsResponse>(
     url,
-    fetchData,
+    fetchData
   );
 
   const aplicationsValidation: ValidationByProcess | null = data?.data ?? null;

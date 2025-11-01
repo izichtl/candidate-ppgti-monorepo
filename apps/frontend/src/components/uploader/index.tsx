@@ -19,21 +19,21 @@ const UploaderField = ({
     <Box sx={{ marginBottom: '28px' }}>
       {!loading && (
         <>
-          <Typography variant="body1" color="primary" sx={{ marginBottom: 1 }}>
+          <Typography variant='body1' color='primary' sx={{ marginBottom: 1 }}>
             {title}
           </Typography>
 
           {hasFile ? (
             <Stack
-              direction="row"
+              direction='row'
               spacing={2}
-              alignItems="center"
+              alignItems='center'
               sx={{ marginBottom: 1 }}
             >
               <Button
-                variant="contained"
-                component="span"
-                color="success"
+                variant='contained'
+                component='span'
+                color='success'
                 onClick={() => window.open(fileUrl, '_blank')}
                 sx={(theme) => ({
                   px: 2.5,
@@ -52,7 +52,7 @@ const UploaderField = ({
               <label htmlFor={`file-input-${filePrefix}`}>
                 <Input
                   id={`file-input-${filePrefix}`}
-                  type="file"
+                  type='file'
                   data-id={filePrefix}
                   onChange={(e) => onChange(e, filePrefix)}
                   inputProps={{
@@ -62,9 +62,9 @@ const UploaderField = ({
                   style={{ display: 'none' }}
                 />
                 <Button
-                  variant="outlined"
-                  component="span"
-                  color="warning"
+                  variant='outlined'
+                  component='span'
+                  color='warning'
                   sx={(theme) => ({
                     px: 2.5,
                     py: 1,
@@ -86,7 +86,7 @@ const UploaderField = ({
               <label htmlFor={`file-input-${filePrefix}`}>
                 <Input
                   id={`file-input-${filePrefix}`}
-                  type="file"
+                  type='file'
                   data-id={filePrefix}
                   onChange={(e) => onChange(e, filePrefix)}
                   inputProps={{
@@ -96,8 +96,8 @@ const UploaderField = ({
                   style={{ display: 'none' }}
                 />
                 <Button
-                  variant="contained"
-                  component="span"
+                  variant='contained'
+                  component='span'
                   sx={(theme) => ({
                     px: 2.5,
                     py: 1,
@@ -110,15 +110,19 @@ const UploaderField = ({
                     },
                   })}
                 >
-                  Escolher arquivo
+                  {fileSelected !== filePrefix
+                    ? 'Escolher arquivo'
+                    : 'Aguardando envio'}
                 </Button>
               </label>
               <Typography
-                variant="body2"
-                color="error"
+                variant='body2'
+                color='error'
                 sx={{ marginTop: 1, fontWeight: 500 }}
               >
-                Nenhum documento enviado.
+                {fileSelected !== filePrefix
+                  ? 'Nenhum arquivo selecionado'
+                  : 'Arquivo selecionado'}
               </Typography>
             </>
           )}
@@ -126,15 +130,15 @@ const UploaderField = ({
       )}
 
       {loading && (
-        <Typography variant="body2" color="primary">
+        <Typography variant='body2' color='primary'>
           Enviando arquivo...
         </Typography>
       )}
 
       <Button
         disabled={fileSelected !== filePrefix}
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         onClick={onClick}
         sx={{ marginTop: 1 }}
       >

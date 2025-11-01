@@ -4,7 +4,6 @@ import type { Request, Response, NextFunction } from 'express';
 import { JWT_SECRET } from '../../config';
 import { response, ResponsePayload } from '../response';
 import { getUserFromToken, authGuard } from './index';
-import AppDataSource from '../../db';
 
 export interface User {
   id: number;
@@ -22,10 +21,13 @@ export interface CommitteeMember {
   if_registration: string;
 }
 
-export async function signToken(user: User | CommitteeMember): Promise<string> {
+export async function signToken(
+  user: User | CommitteeMember,
+  role: string = 'USER'
+): Promise<string> {
   const secret = Buffer.from(JWT_SECRET, 'base64');
 
-  return jwt.sign({ ...user, roles: ['USER'] }, secret, {
+  return jwt.sign({ ...user, roles: [role] }, secret, {
     expiresIn: 60 * 60 * 24 * 3, // expires in 1 day
     // expiresIn: 2592000, // expires in 30 days
   });
@@ -102,24 +104,6 @@ export const committeeAuthMiddleware = async (
         status: 401,
       });
     }
-
-    // if (!AppDataSource.isInitialized) {
-    //   await AppDataSource.initialize();
-    // }
-
-    // const committeeUser = await AppDataSource.query(
-    //   `SELECT * FROM committee_members WHERE id = $1`,
-    //   [(user as any).id]
-    // );
-
-    // if (!committeeUser || committeeUser.length === 0) {
-    //   console.log('Access denied. Committee member required.');
-    //   response.unauthorized({
-    //     message: 'Access denied. Committee member required.',
-    //     status: 403,
-    //   });
-    //   return;
-    // }
 
     next();
   } catch (error) {

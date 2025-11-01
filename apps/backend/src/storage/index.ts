@@ -8,6 +8,7 @@ const supabaseSignedUrl = async (filePath: string): Promise<string | null> => {
       .createSignedUrl(filePath, time);
 
     if (error) {
+      console.log(filePath, 'path');
       console.error('Erro ao gerar URL assinada:', error.message);
       return null;
     }

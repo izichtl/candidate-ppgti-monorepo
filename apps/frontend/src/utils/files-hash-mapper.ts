@@ -30,6 +30,12 @@ export const filePrefixes = [
     control: '',
   },
   {
+    id: 'employment_link',
+    label:
+      'Comprovante de Vínculo Empregatício com Empresa Parceira Selecionada:',
+    control: '',
+  },
+  {
     id: 'military_clearance',
     label: 'Comprovante de Quitação Militar:',
     control: 'Masculino',

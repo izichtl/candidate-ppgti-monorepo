@@ -93,19 +93,11 @@ const HomologDataCard: React.FC<SelectProcess> = ({
 
   return (
     <Box sx={{ width: '100%', mb: 3 }}>
-      <Stack direction="row" spacing={2} sx={{ mt: 2, flexWrap: 'wrap' }}>
-        {/* {nome && (
-          <Button
-            variant="outlined"
-            component={Link}
-            href={''}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver Edital
-          </Button>
-        )} */}
-      </Stack>
+      <Stack
+        direction='row'
+        spacing={2}
+        sx={{ mt: 2, flexWrap: 'wrap' }}
+      ></Stack>
       <br />
       <PersonalDataCard
         email={data.candidates.email}
@@ -139,7 +131,7 @@ const HomologDataCard: React.FC<SelectProcess> = ({
       />
 
       <RequiredDocumentsCard
-        borderColor="green"
+        borderColor='green'
         checkedStatusGeral={checkedDocumentos}
         handleToggleStatusGeral={() => {
           setCheckedDocumentos(!checkedDocumentos);
@@ -152,7 +144,7 @@ const HomologDataCard: React.FC<SelectProcess> = ({
         <QuotaInfoCard
           borderColor={borderColor}
           idCota={data.candidates.quota_id}
-          cota="afro_ou_inde"
+          cota='afro_ou_inde'
           quota_declaration_admission={data.docs.quota_declaration_admission}
           quota_declaration_if={data.docs.quota_declaration_if}
           checkedStatusGeral={checkedCotas}
@@ -184,8 +176,8 @@ const HomologDataCard: React.FC<SelectProcess> = ({
         sx={{ display: 'flex', justifyContent: 'space-between', mb: 2, gap: 2 }}
       >
         <Button
-          color="success"
-          variant="contained"
+          color='success'
+          variant='contained'
           disabled={!checked}
           onClick={() => {
             setIsSuccess(true);
@@ -195,8 +187,8 @@ const HomologDataCard: React.FC<SelectProcess> = ({
           HOMOLOGAR
         </Button>
         <Button
-          color="error"
-          variant="contained"
+          color='error'
+          variant='contained'
           onClick={() => {
             setIsSuccess(false);
             modal.onTrue();

@@ -12,6 +12,8 @@ import ApplicationsHomolog from '../pages/application-homolog';
 import DocumentsPage from '../pages/documents';
 import ProcessAplicationList from '../pages/application-process-list';
 import CandidateApplications from '../pages/candidate-applications';
+import CandidateProfilePage from '../pages/candidate-profile';
+import SystemInfoPage from '../pages/about';
 
 const router = createBrowserRouter(
   [
@@ -45,6 +47,11 @@ const router = createBrowserRouter(
           handle: { title: 'Dashboard' },
         },
         {
+          path: '/candidate/profile',
+          element: <CandidateProfilePage />,
+          handle: { title: 'Dashboard' },
+        },
+        {
           path: '/application-homolog',
           element: <ApplicationsHomolog />,
           handle: { title: 'Dashboard' },
@@ -61,7 +68,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/about',
-          element: <UnderConstructionComponent />,
+          element: <SystemInfoPage />,
           handle: { title: 'Sobre' },
         },
         {

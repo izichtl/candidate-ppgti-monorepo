@@ -16,7 +16,9 @@ export const stepOneSchema = Yup.object({
 export const stepTwoSchema = Yup.object({
   name: Yup.string(),
   sex: Yup.string().required('Obrigatório'),
-  registration_: Yup.string().required('Obrigatório'),
+  registration_: Yup.string()
+    .max(12, 'Máximo de 12 caracteres')
+    .required('Obrigatório'),
   // .matches(phoneRegex, 'Apenas números são permitidos'),
   registration_state: Yup.string().required('Obrigatório'),
   registration_place: Yup.string().required('Obrigatório'),
@@ -48,29 +50,66 @@ export const stepThreeSchema = Yup.object({
     .test(
       'contains-lattes',
       'A URL deve conter "lattes.cnpq.br"',
-      (value) => !value || value.includes('lattes.cnpq.br'),
+      (value) => !value || value.includes('lattes.cnpq.br')
     ),
 });
+
+// export function getValidationSchema(step: number, accessType: string) {
+//   const isCandidate = accessType === 'register';
+//   const social_name_validation = isCandidate
+//     ? Yup.string().required('Obrigatório')
+//     : Yup.string().notRequired();
+//   switch (step) {
+//     case 1:
+//       return Yup.object({
+//         email: Yup.string().email('Email inválido').required('Obrigatório'),
+//         cpf: Yup.string()
+//           .required('Obrigatório')
+//           .matches(cpfRegex, 'CPF deve conter 11 dígitos'),
+
+//         social_name: social_name_validation,
+//       });
+//     case 2:
+//       return stepTwoSchema;
+//     case 3:
+//       return stepThreeSchema;
+//     default:
+//       return Yup.object();
+//   }
+// }
+
+const STEPS = {
+  AUTH: 1,
+  CHOICE: 2,
+  PERSONAL: 3,
+  ACADEMIC: 4,
+  DOCUMENTS: 5,
+} as const;
 
 export function getValidationSchema(step: number, accessType: string) {
   const isCandidate = accessType === 'register';
   const social_name_validation = isCandidate
     ? Yup.string().required('Obrigatório')
     : Yup.string().notRequired();
+
   switch (step) {
-    case 1:
+    case STEPS.AUTH:
       return Yup.object({
         email: Yup.string().email('Email inválido').required('Obrigatório'),
         cpf: Yup.string()
           .required('Obrigatório')
           .matches(cpfRegex, 'CPF deve conter 11 dígitos'),
-
         social_name: social_name_validation,
       });
-    case 2:
+
+    case STEPS.PERSONAL:
       return stepTwoSchema;
-    case 3:
+
+    case STEPS.ACADEMIC:
       return stepThreeSchema;
+
+    case STEPS.CHOICE:
+    case STEPS.DOCUMENTS:
     default:
       return Yup.object();
   }

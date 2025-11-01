@@ -2,7 +2,7 @@
 import { response } from '../../middlewares/response';
 import { controllerWrapper } from '../../lib/controllerWrapper';
 import { signToken } from '../../middlewares/auth/index';
-import AppDataSource, { supabase } from '../../db';
+import { supabase } from '../../db';
 import { sanitizeCPF } from '../../utils/string-format';
 import { verifyUserExistence } from '../../models/candidate-login';
 import e from 'express';
@@ -11,7 +11,7 @@ export const handlerCadidateRegister = async (
   email: string,
   cpf: string,
   social_name: string
-): Promise<CandidateLoginResponse>  => {
+): Promise<CandidateLoginResponse> => {
   const { data, error } = await supabase
     .from('candidates')
     .insert([

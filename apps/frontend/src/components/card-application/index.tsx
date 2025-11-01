@@ -45,31 +45,32 @@ const CardApplication: React.FC<CardApplicationProps> = ({ inscricoes }) => {
             '&:hover': { boxShadow: 6 },
           }}
         >
-          <Typography variant="body1">
+          <Typography variant='body1'>
             <strong>Programa:</strong> {item.program}
           </Typography>
-          <Typography variant="body1">
+          <Typography variant='body1'>
             <strong>Ano/Semestre:</strong> {item.period}
           </Typography>
-          <Typography variant="body1">
+          <Typography variant='body1'>
             <strong>Linha:</strong> {item.line}
           </Typography>
-          <Typography variant="body1">
+          <Typography variant='body1'>
             <strong>Tema:</strong> {item.topic}
           </Typography>
-          <Typography variant="body1">
+          <Typography variant='body1'>
             <strong>Título do Pré-Projeto:</strong> {item.tittle}
           </Typography>
-          <Typography variant="body1">
+          <Typography variant='body1'>
             <strong>Data da Inscrição:</strong> {item.date}
           </Typography>
           {item.valid && (
             <>
               <Button
                 component={Link}
+                // external link
                 href={item.project_url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target='_blank'
+                rel='noopener noreferrer'
                 sx={{
                   mt: 2,
                   px: 3,
@@ -78,7 +79,7 @@ const CardApplication: React.FC<CardApplicationProps> = ({ inscricoes }) => {
                     bgcolor: theme.palette.success.dark,
                   },
                 }}
-                variant="contained"
+                variant='contained'
               >
                 Pré-Projeto
               </Button>

@@ -10,6 +10,8 @@ RUN yarn install --frozen-lockfile
 RUN npm install typescript -g
 COPY . .
 RUN npm run build
+RUN adduser -D appuser
+USER appuser
 EXPOSE 3001
 CMD ["yarn", "start"]
 

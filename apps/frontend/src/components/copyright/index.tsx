@@ -1,4 +1,5 @@
 import { Link, Typography } from '@mui/material';
+import CustomLink from '../custom-link';
 
 export const Copyright = () => {
   return (
@@ -9,10 +10,10 @@ export const Copyright = () => {
         color: 'text.secondary',
       }}
     >
-      {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
-        Your Website
-      </Link>{' '}
+      {'Direitos Reservados © '}
+      <CustomLink color='inherit' to='https://joaopessoa.ifpb.edu.br/'>
+        IFPB
+      </CustomLink>{' '}
       {new Date().getFullYear()}.
     </Typography>
   );

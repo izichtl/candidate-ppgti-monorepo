@@ -135,7 +135,7 @@ const DashboardCandidato = () => {
   const getIdByName = (
     processId: number,
     type: 'line' | 'topic',
-    name: string,
+    name: string
   ): number => {
     if (processId === 0 || !name) return 0;
 
@@ -145,7 +145,7 @@ const DashboardCandidato = () => {
     const line = process.research_lines.find((l: any) =>
       type === 'line'
         ? l.name === name
-        : l.research_topics?.some((t: any) => t.name === name),
+        : l.research_topics?.some((t: any) => t.name === name)
     );
 
     if (!line) return 0;
@@ -171,29 +171,29 @@ const DashboardCandidato = () => {
         research_line_id: Yup.string()
           .notOneOf(
             ['Selecione uma linha'],
-            'Selecione uma Linha de Pesquisa válida',
+            'Selecione uma Linha de Pesquisa válida'
           )
           .required('Selecione a Linha de Pesquisa'),
 
         research_topic_id: Yup.string()
           .notOneOf(
             ['Selecione um tema'],
-            'Selecione um Tema de Pesquisa válido',
+            'Selecione um Tema de Pesquisa válido'
           )
           .required('Selecione o Tema do Projeto'),
 
         project_title: Yup.string().required(
-          'O título do projeto é obrigatório',
+          'O título do projeto é obrigatório'
         ),
         project: Yup.mixed()
           .required('O projeto é obrigatório')
           .test('fileType', 'Formato inválido (apenas PDF)', (value) =>
             // @ts-expect-error
-            value ? value.type === 'application/pdf' : false,
+            value ? value.type === 'application/pdf' : false
           )
           .test('fileSize', 'O arquivo é muito grande (máx: 5MB)', (value) =>
             // @ts-expect-error
-            value ? value.size <= 5 * 1024 * 1024 : false,
+            value ? value.size <= 5 * 1024 * 1024 : false
           ),
       }),
 
@@ -207,12 +207,12 @@ const DashboardCandidato = () => {
     research_line_id: getIdByName(
       useFormikProps.values.process_id,
       'line',
-      useFormikProps.values.research_line_id,
+      useFormikProps.values.research_line_id
     ),
     research_topic_id: getIdByName(
       useFormikProps.values.process_id,
       'topic',
-      useFormikProps.values.research_topic_id,
+      useFormikProps.values.research_topic_id
     ),
     project_title: useFormikProps.values.project_title,
     project_file_name: useFormikProps.values.project_file_name,
@@ -298,7 +298,7 @@ const DashboardCandidato = () => {
         });
         setTimeout(() => {
           logout();
-        }, 1500);
+        }, 2000);
       }
     }
   }, [cadidateValid, cadidateValidLoading, cadidateValidError]);
@@ -327,16 +327,16 @@ const DashboardCandidato = () => {
       )}
       {(!processesLoading || !processesLoading) && (
         <>
-          <Grid container spacing={2} alignItems="center" mb={4}>
+          <Grid container spacing={2} alignItems='center' mb={4}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <Typography variant="h3" fontWeight="bold">
+              <Typography variant='h3' fontWeight='bold'>
                 Processos Seletivos
               </Typography>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography
-                variant="h6"
-                color="text.secondary"
+                variant='h6'
+                color='text.secondary'
                 textAlign={isMobile ? 'left' : 'right'}
               >
                 {currentDateTime}
@@ -344,7 +344,7 @@ const DashboardCandidato = () => {
             </Grid>
           </Grid>
 
-          <Typography variant="h5" fontWeight="bold" gutterBottom>
+          <Typography variant='h5' fontWeight='bold' gutterBottom>
             Processos Seletivos Abertos
           </Typography>
           <Stack spacing={2} mb={4}>
@@ -374,7 +374,12 @@ const DashboardCandidato = () => {
 
           <CadastroFormModal
             open={modal.value}
-            validation={validation[useFormikProps.values.process_id]}
+            validation={
+              validation[useFormikProps.values.process_id] ?? {
+                reachedLimit: false,
+                topicsUsed: [],
+              }
+            }
             useFormikProps={useFormikProps}
             onClose={handlerClose}
             opcoesLinhaPesquisa={researshLines}

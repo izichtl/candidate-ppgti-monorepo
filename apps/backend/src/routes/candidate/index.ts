@@ -4,6 +4,7 @@ import { candidateAcademicUpdater } from '../../controllers/create-candidate-aca
 import { getApplicationsByCpf } from '../../controllers/get-candidate-aplications';
 import { getApplicationsValidationByCpf } from '../../controllers/get-candidate-aplications-validation';
 import { getCadidateByCPF } from '../../controllers/get-candidate-by-cpf';
+import { getCandidateFullData } from '../../controllers/get-candidate-full-data';
 
 const router = express.Router();
 // TODO atualiza as infos das rotas para swagger
@@ -46,6 +47,19 @@ router.post('/v1/candidate/personal-data', candidateUpdater);
  *         description: Dados atualizados com sucesso
  */
 router.post('/v1/candidate/academic-data', candidateAcademicUpdater);
+
+/**
+ * @swagger
+ * /v1/candidate/update:
+ *   get:
+ *     summary: Dados atualizados do candidado
+ *     tags:
+ *       - Auth
+ *     responses:
+ *       200:
+ *         description: Dados atualizados com sucesso
+ */
+router.get('/v1/candidate/full-data', getCandidateFullData);
 
 /**
  * @swagger

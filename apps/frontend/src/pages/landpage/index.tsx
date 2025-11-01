@@ -53,7 +53,7 @@ export default function LandingPage() {
           </Typography>
           <Typography variant='h5' color='text.secondary' paragraph>
             Faça parte de um dos programas de pós-graduação mais inovadores da
-            região. Inscrições abertas!.
+            região. Inscrições abertas!
           </Typography>
           <Button
             variant='contained'
