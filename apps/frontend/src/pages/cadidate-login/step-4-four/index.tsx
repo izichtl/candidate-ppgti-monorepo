@@ -160,7 +160,7 @@ const StepFour = ({ cpf, sex, quota }: any) => {
 
   return (
     <>
-      {candidateFiles.id !== 10 && (
+      {candidateFiles.id !== 0 && (
         <Box sx={{ bgcolor: '#f0f4f8', minHeight: '100vh', p: 2, pt: 8 }}>
           <Paper
             elevation={isMobile ? 0 : 3}
