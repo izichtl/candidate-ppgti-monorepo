@@ -59,3 +59,8 @@ insert into public.committee_members (name, email, cpf, if_registration, passwor
 ('Diego Ernesto Rosa Pessoa', 'diego.rosa.pessoa@ifpb.edu.br', '00001863442', '1863442', 'iGHTsWXy4PreF6mp'),
 ('Francisco Dantas Nobre Neto', 'francisco.dantas.nobre@ifpb.edu.br', '00001962209', '1962209', 'iGHTsWXy4PreF6mp'),
 ('Francisco Petronio Alencar de Medeiros', 'francisco.petronio@ifpb.edu.br', '00001508373', '1508373', 'iGHTsWXy4PreF6mp');
+
+
+
+insert into public.committee_members (name, email, cpf, if_registration, password) values
+('Damires ADM', 'damires@ifpb.edu.br', '000001196487', '1196487', 'iGHTsWXy4PreF6mp');
