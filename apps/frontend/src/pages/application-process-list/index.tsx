@@ -304,12 +304,9 @@ const ProcessAplicationList: React.FC = () => {
                       }}
                       disabled={
                         item.applications_verification[0] !== undefined &&
-                        (getStatusInfo(
+                        getStatusInfo(
                           item.applications_verification[0].final_status
-                        ).label === 'Homologado' ||
-                          getStatusInfo(
-                            item.applications_verification[0].final_status
-                          ).label === 'Recusado')
+                        ).label === 'Recusado'
                       }
                       onClick={() =>
                         navigate(
